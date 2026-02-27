@@ -1,0 +1,29 @@
+{
+  "name": "@sebastian/personal-utilities",
+  "version": "1.0.0",
+  "description": "A ready-to-use JavaScripts custom utilities such as types validations, formats validations, formatter, and many more!",
+  "main": "index.js",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "require": "./src/index.js"
+    },
+    "./guards": {
+      "require": "./src/guards/guards.js",
+      "types": "./src/guards/guards.d.ts"
+    },
+    "./primitives": {
+      "require": "./src/primitives/primitives.js",
+      "types": "./src/primitives/primitives.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "node ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
