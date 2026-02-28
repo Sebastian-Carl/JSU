@@ -25,11 +25,41 @@ interface DomAPI {
     IdOf(element: Element): DOMIdOfAPI;
 
     /**
+     *  Mounts the given `childNode` to its given `parentNode`.
+     *
+     *  @param parentNode - The parent node to mount the given child node.
+     *  @param childNode - The given child node to mount.
+     */
+    Mount(parentNode: ParentNode, childNode: ChildNode): void;
+
+    /**
+     *  Mounts the given `childNode` collection to its given `parentNode`.
+     *
+     *  @param parentNode - The parent node to mount the given collection of child node.
+     *  @param childNodes - The given collection of child nodes to mount.
+     */
+    Mount(parentNode: ParentNode, ...childNodes: ChildNode[]): void;
+
+    /**
      *  Access the element's `CSSStyleDeclaration` and returns a set collection of for it.
      *
      *  @param element - The element to access its `CSSStyleDeclaration`.
      */
     StyleOf(element: Element): DOMStyleOfAPI;
+
+    /**
+     *  Unmounts the given `childNode` from its `parentNode`.
+     *
+     *  @param childNode - The child node to unmount.
+     */
+    Unmount(childNode: ChildNode): void;
+
+    /**
+     *  Unmounts the given `childNode` collection from their `parentNode`.
+     *
+     *  @param childNodes - The collection of child nodes to unmount.
+     */
+    Unmount(...childNodes: ChildNode[]): void;
 
     /**
      *  Verifies the given tag of element.

@@ -20,5 +20,6 @@ const Anchor = DOM.Create.HTMLElement("a", {
     href: "https://www.facebook.com/"
 });
 
-document.querySelector("#view")?.appendChild(Anchor);
+const View = document.querySelector("#view");
+DOM.Mount(View, Anchor)
 console.log(window);
