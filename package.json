@@ -18,91 +18,21 @@
       "require": "./src/utils/custom/error/error.js",
       "types": "./types/custom/error/error.d.ts"
     },
-    "./custom/error/builder": {
-      "require": "./src/utils/custom/error/builder/error.builder.js",
-      "types": "./types/custom/error/builder/error.builder.d.ts"
-    },
-    "./custom/error/constructor/base": {
-      "require": "./src/utils/custom/error/constructor/error.base.js",
-      "types": "./types/custom/error/constructor/error.base.d.ts"
-    },
-    "./custom/error/constructor/custom": {
-      "require": "./src/utils/custom/error/constructor/error.custom.js",
-      "types": "./types/custom/error/constructor/error.custom.d.ts"
-    },
     "./custom/utils": {
       "require": "./src/utils/custom/utils/custom.utils.js",
       "types": "./types/custom/utils/custom.utils.d.ts"
-    },
-    "./custom/utils/generator": {
-      "require": "./src/utils/custom/utils/generator/generator.js",
-      "types": "./types/custom/utils/generator/generator.d.ts"
     },
     "./dom": {
       "require": "./src/utils/dom/dom.js",
       "types": "./types/dom/dom.d.ts"
     },
-    "./dom/attr/class": {
-      "require": "./src/utils/dom/attr/attr.class.js",
-      "types": "./types/dom/attr/attr.class.d.ts"
-    },
-    "./dom/attr/id": {
-      "require": "./src/utils/dom/attr/attr.id.js",
-      "types": "./types/dom/attr/attr.id.d.ts"
-    },
-    "./dom/attr/style": {
-      "require": "./src/utils/dom/attr/attr.style.js",
-      "types": "./types/dom/attr/attr.style.d.ts"
-    },
-    "./dom/element/create": {
-      "require": "./src/utils/dom/element/create/element.create.js",
-      "types": "./types/dom/element/create/element.create.d.ts"
-    },
-    "./dom/element/getElementBy": {
-      "require": "./src/utils/dom/element/getElementBy/dom.getElementBy.js",
-      "types": "./types/dom/element/getElementBy/dom.getElementBy.d.ts"
-    },
-    "./dom/element/query": {
-      "require": "./src/utils/dom/element/query/dom.query.js",
-      "types": "./types/dom/dom.d.ts"
-    },
-    "./dom/element/tag-verifier": {
-      "require": "./src/utils/dom/element/tag-verifier/verifier.js",
-      "types": "./types/dom/element/tag-verifier/verifier.d.ts"
-    },
-    "./dom/lifecycle/mount": {
-      "require": "./src/utils/dom/lifecycle/mount.js"
-    },
-    "./dom/lifecycle/unmount": {
-      "require": "./src/utils/dom/lifecycle/unmount.js"
-    },
     "./guards": {
       "require": "./src/utils/guards/guards.js",
       "types": "./types/guards/guards.d.ts"
     },
-    "./guards/data-types": {
-      "require": "./src/utils/guards/data-types/data-types.js",
-      "types": "./types/guards/data-types/data-types.d.ts"
-    },
-    "./guards/formats": {
-      "require": "./src/utils/guards/formats/formats.js",
-      "types": "./types/guards/formats/formats.d.ts"
-    },
     "./primitives": {
       "require": "./src/utils/primitives/primitives.js",
       "types": "./types/primitives/primitives.d.ts"
-    },
-    "./primitives/obj/accessor": {
-      "require": "./src/utils/primitives/obj/obj.accessor.js",
-      "types": "./types/primitives/obj/obj.accessor.d.ts"
-    },
-    "./primitives/obj/iterator": {
-      "require": "./src/utils/primitives/obj/obj.iterator.js",
-      "types": "./types/primitives/obj/obj.iterator.d.ts"
-    },
-    "./primitives/str": {
-      "require": "./src/utils/primitives/str/str.js",
-      "types": "./types/primitives/str/str.d.ts"
     },
     "./storage": {
       "require": "./src/utils/storage/storage.js",
