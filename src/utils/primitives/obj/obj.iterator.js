@@ -1,5 +1,5 @@
 import Emit from '../../custom/error/builder/error.builder.js';
-import { ConstructorOrTypeOf, DefineProperty } from '../../custom/utils/custom.utils.js';
+import { ConstructorOrTypeOf } from '../../custom/utils/custom.utils.js';
 import { IsFuncAnonymous } from '../../guards/formats/formats.js';
 import { IsArr, IsFunc, IsMapObj, IsNullOrUndefined, IsSetObj } from '../../guards/data-types/data-types.js';
 import { CountOf } from './obj.accessor.js';
@@ -146,10 +146,3 @@ export function EveryOf(obj, callback, thisArg) {
     /* @Iterate */
     return obj["every"](callback, thisArg);
 }
-
-if (IsNullOrUndefined(globalThis.Primitives))
-    Global("Primitives", {}, "soft");
-
-[EachOf, EveryOf, MapOf, SomeOf].forEach(iter =>
-    DefineProperty(globalThis.Primitives, iter.name, iter, "soft")
-);

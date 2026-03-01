@@ -199,18 +199,3 @@ export function IsPropertyAt(arg, property) {
 
     return Object.hasOwn(arg, property) || property in arg;
 }
-
-if (IsNullOrUndefined(globalThis.Guards))
-    Object.defineProperty(globalThis, "Guards", {
-        value: {},
-        writable: false, configurable: true, enumerable: true
-    });
-
-[
-    IsArr, IsBool, IsChildNode, IsElement, IsFunc, IsHTMLElement, IsIterator, IsMapObj,
-    IsNode, IsNullOrUndefined, IsNum, IsParentNode, IsPlainObj, IsPropertyAt, IsRegExp,
-    IsSetObj, IsStr, IsUnknownElement,
-].forEach(guard => Object.defineProperty(globalThis.Guards, guard.name, {
-    value: guard,
-    writable: false, configurable: true, enumerable: true
-}));

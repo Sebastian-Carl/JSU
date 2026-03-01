@@ -1,5 +1,4 @@
 import Emit from '../../../custom/error/builder/error.builder.js';
-import { DefineProperty, Global } from '../../../custom/utils/custom.utils.js';
 import { IsNullOrUndefined, IsParentNode, IsStr } from '../../../guards/data-types/data-types.js';
 import { IsStrEmpty } from '../../../guards/formats/formats.js';
 import { XMLNameSpace } from '../../../variables.js';
@@ -170,11 +169,3 @@ const GetElementBy = {
 }
 
 export default GetElementBy;
-
-if (IsNullOrUndefined(globalThis.DOM))
-    Global("DOM", {}, "soft");
-
-if (IsNullOrUndefined(globalThis.GetElementBy))
-    Global("GetElementBy", GetElementBy, "soft");
-
-DefineProperty(globalThis.DOM, "GetElementBy", GetElementBy, "soft");

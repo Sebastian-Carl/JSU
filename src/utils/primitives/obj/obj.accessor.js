@@ -1,5 +1,5 @@
 import Emit from '../../custom/error/builder/error.builder.js';
-import { ConstructorOrTypeOf, DefineProperty, Global, NameOf } from '../../custom/utils/custom.utils.js';
+import { ConstructorOrTypeOf } from '../../custom/utils/custom.utils.js';
 import { IsArrEmpty, IsMapObjEmpty, IsPlainObjEmpty, IsSetObjEmpty, IsStrEmpty } from "../../guards/formats/formats.js";
 import { IsArr, IsMapObj, IsNullOrUndefined, IsNum, IsPlainObj, IsSetObj, IsStr } from "../../guards/data-types/data-types.js";
 
@@ -240,10 +240,3 @@ export function GetPropertyOf(obj, propertyId) {
 
     return Result;
 }
-
-if (IsNullOrUndefined(globalThis.Primitives))
-    Global("Primitives", {}, "soft");
-
-[CountOf, EntriesOf, GetPropertyOf, KeysOf, ValuesOf].forEach(accessor =>
-    DefineProperty(globalThis.Primitives, accessor.name, accessor, "soft")
-);

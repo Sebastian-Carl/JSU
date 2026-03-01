@@ -1,5 +1,3 @@
-import { IsNullOrUndefined } from '../../../guards/data-types/data-types.js';
-import { DefineProperty, Global } from '../../utils/custom.utils.js';
 import { MissingParameterError } from './error.custom.js';
 
 /* -- Default Values -- */
@@ -71,11 +69,3 @@ export default class CustomError extends Error {
         this.TimeStamp = new Date();
     }
 }
-
-if (IsNullOrUndefined(globalThis.ERROR))
-    Global("ERROR", {}, "soft");
-
-if (IsNullOrUndefined(globalThis.ERROR.Constructors))
-    DefineProperty(globalThis.ERROR, "Constructors", {}, "soft");
-
-DefineProperty(globalThis.ERROR.Constructors, "CustomError", CustomError, 'soft');

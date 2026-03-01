@@ -1,6 +1,5 @@
 import Emit from '../../custom/error/builder/error.builder.js';
-import { DefineProperty } from '../../custom/utils/custom.utils.js';
-import { IsChildNode, IsNullOrUndefined, IsPropertyAt } from '../../guards/data-types/data-types.js';
+import { IsChildNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
 
 /**
  *  Unmounts the given `childNode` to its `parentNode`.
@@ -42,8 +41,3 @@ export default function Unmount(...childNodes) {
         Node.remove();
     }
 }
-
-if (IsNullOrUndefined(globalThis.DOM))
-    Global("DOM", {}, "soft");
-
-DefineProperty(globalThis.DOM, "Unmount", Unmount, "soft")

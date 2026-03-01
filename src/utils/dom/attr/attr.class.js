@@ -1,8 +1,7 @@
 import Emit from '../../custom/error/builder/error.builder.js';
 import { IsStrEmpty } from '../../guards/formats/formats.js';
-import { IsArr, IsElement, IsNullOrUndefined, IsStr } from '../../guards/data-types/data-types.js';
+import { IsArr, IsElement, IsStr } from '../../guards/data-types/data-types.js';
 import { CountOf } from '../../primitives/obj/obj.accessor.js';
-import { DefineProperty, Global } from '../../custom/utils/custom.utils.js';
 
 /**
  *  Access the `DOMTokenList` ('class') attribute of the specified target element.
@@ -185,8 +184,3 @@ export default function ClassOf(element) {
         },
     }
 }
-
-if (IsNullOrUndefined(globalThis.DOM))
-    Global("DOM", {}, "soft");
-
-DefineProperty(globalThis.DOM, "ClassOf", ClassOf, "soft");

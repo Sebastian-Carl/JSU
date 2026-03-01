@@ -272,20 +272,3 @@ export function HasValue(obj, searchElement, atPos = 0) {
 
     return false;
 }
-
-if (IsNullOrUndefined(globalThis.Guards))
-    Object.defineProperty(globalThis, "Guards", {
-        value: {},
-        writable: false, configurable: true, enumerable: true
-    });
-
-[
-    IsArrEmpty, IsEndsWithASCII, IsEndsWithLowerCase, IsEndsWithNumber, IsEndsWithSpecialCharacter,
-    IsEndsWithUpperCase, IsFuncAnonymous, IsFuncAsynchronous, IsMapObjEmpty, IsPlainObjEmpty,
-    IsSetObjEmpty, IsStartsWithASCII, IsStartsWithLowerCase, IsStartsWithNumber, IsStartsWithSpecialCharacter,
-    IsStartsWithUpperCase, IsStrEmpty, HasASCII, HasLowerCase, HasNumbers, HasProperty,
-    HasSpecialCharacters, HasUpperCase, HasValue
-].forEach(format => Object.defineProperty(globalThis.Guards, format.name, {
-    value: format,
-    writable: false, configurable: true, enumerable: true
-}));

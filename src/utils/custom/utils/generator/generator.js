@@ -1,10 +1,10 @@
 import { IsPlainObjEmpty } from '../../../guards/formats/formats.js';
-import { IsBool, IsNullOrUndefined, IsNum, IsPlainObj } from '../../../guards/data-types/data-types.js';
+import { IsBool, IsNum, IsPlainObj } from '../../../guards/data-types/data-types.js';
 import { CountOf, KeysOf } from '../../../primitives/obj/obj.accessor.js';
 import { EachOf, MapOf } from '../../../primitives/obj/obj.iterator.js';
 import Str from '../../../primitives/str/str.js';
 import Emit from '../../error/builder/error.builder.js';
-import { Clamp, DefineProperty, Global } from '../custom.utils.js';
+import { Clamp } from '../custom.utils.js';
 
 /**
  *  A collection of generators module.
@@ -220,8 +220,3 @@ export default class Generator {
         return Token;
     }
 }
-
-if (!IsNullOrUndefined(globalThis.Custom))
-    Global("Custom", {}, "soft");
-
-DefineProperty(globalThis.Custom, "Generator", Generator, "soft");

@@ -38,14 +38,6 @@
       "require": "./src/utils/storage/storage.js",
       "types": "./types/storage/storage.d.ts"
     },
-    "./storage/local": {
-      "require": "./src/utils/storage/local/storage.local.js",
-      "types": "./types/storage/local/storage.local.d.ts"
-    },
-    "./storage/session": {
-      "require": "./src/utils/storage/session/storage.session.js",
-      "types": "./types/storage/session/storage.session.d.ts"
-    },
     "./global": {
       "require": "./src/utils/global.js",
       "types": "./types/global.d.ts"

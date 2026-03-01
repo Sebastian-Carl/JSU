@@ -148,10 +148,3 @@ export function Global(key, data, opt = "def") {
 
     DefineProperty(globalThis, key, data, opt);
 }
-
-if (IsNullOrUndefined(globalThis.Custom))
-    Global("Custom", {}, 'soft');
-
-[Clamp, ConstructorOrTypeOf, Global, NameOf].forEach(customUtil =>
-    DefineProperty(globalThis.Custom, customUtil.name, customUtil, "soft")
-);

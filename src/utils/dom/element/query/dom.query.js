@@ -1,6 +1,5 @@
 import Emit from '../../../custom/error/builder/error.builder.js';
-import { DefineProperty, Global } from '../../../custom/utils/custom.utils.js';
-import { IsStr, IsParentNode, IsNullOrUndefined } from '../../../guards/data-types/data-types.js';
+import { IsStr, IsParentNode } from '../../../guards/data-types/data-types.js';
 import { IsStrEmpty } from '../../../guards/formats/formats.js';
 
 /**
@@ -74,10 +73,3 @@ export function SelectAll(selector, root = document) {
 
     return Array.from(root.querySelectorAll(selector));
 }
-
-if (IsNullOrUndefined(globalThis.DOM))
-    Global("DOM", {}, "soft");
-
-[Select, SelectAll].forEach(query =>
-    DefineProperty(globalThis, query.name, query, "soft")
-);

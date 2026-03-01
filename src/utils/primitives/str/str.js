@@ -1,6 +1,3 @@
-import { DefineProperty } from '../../custom/utils/custom.utils.js';
-import { IsNullOrUndefined } from '../../guards/data-types/data-types.js';
-
 /**
  *  Contains `@custom` and/or `@enhance` string methods.
  */
@@ -53,8 +50,3 @@ const Str = {
 }
 
 export default Str;
-
-if (IsNullOrUndefined(globalThis.Primitives))
-    Global("Primitives", {}, "soft");
-
-DefineProperty(globalThis.Primitives, "Str", Str, "soft");

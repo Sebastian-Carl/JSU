@@ -1,5 +1,3 @@
-import { IsNullOrUndefined } from '../../../guards/data-types/data-types.js';
-import { DefineProperty, Global } from '../../utils/custom.utils.js';
 import CustomError from './error.base.js';
 
 /**
@@ -107,16 +105,3 @@ export class NoSuchElementTagError extends CustomError {
         super(meta);
     }
 }
-
-if (IsNullOrUndefined(globalThis.ERROR))
-    Global("ERROR", {}, "soft");
-
-if (IsNullOrUndefined(globalThis.ERROR.Constructors))
-    DefineProperty(globalThis.ERROR, "Constructors", {}, "soft");
-
-[
-    ArgumentError, IndexOutOfBoundsError, InvalidPropertyError, MissingParameterError,
-    MissingPropertyError, NoSuchElementTagError, NotSupportedError, UnknownPropertyError
-].forEach(customError => {
-    DefineProperty(globalThis.ERROR.Constructors, customError.name, customError, "soft");
-});
