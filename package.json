@@ -71,12 +71,10 @@
       "types": "./types/dom/element/tag-verifier/verifier.d.ts"
     },
     "./dom/lifecycle/mount": {
-      "require": "./src/utils/dom/lifecycle/mount.js",
-      "types": "./types/dom/dom.d.ts"
+      "require": "./src/utils/dom/lifecycle/mount.js"
     },
     "./dom/lifecycle/unmount": {
-      "require": "./src/utils/dom/lifecycle/unmount.js",
-      "types": "./types/dom/dom.d.ts"
+      "require": "./src/utils/dom/lifecycle/unmount.js"
     },
     "./guards": {
       "require": "./src/utils/guards/guards.js",
@@ -92,7 +90,7 @@
     },
     "./primitives": {
       "require": "./src/utils/primitives/primitives.js",
-      "types": "./types/primitives/primitives.d.t.s"
+      "types": "./types/primitives/primitives.d.ts"
     },
     "./primitives/obj/accessor": {
       "require": "./src/utils/primitives/obj/obj.accessor.js",
@@ -109,6 +107,14 @@
     "./storage": {
       "require": "./src/utils/storage/storage.js",
       "types": "./types/storage/storage.d.ts"
+    },
+    "./storage/local": {
+      "require": "./src/utils/storage/local/storage.local.js",
+      "types": "./types/storage/local/storage.local.d.ts"
+    },
+    "./storage/session": {
+      "require": "./src/utils/storage/session/storage.session.js",
+      "types": "./types/storage/session/storage.session.d.ts"
     },
     "./global": {
       "require": "./src/utils/global.js",
