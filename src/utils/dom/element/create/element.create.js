@@ -1,11 +1,12 @@
 import Emit from '../../../custom/error/builder/error.builder.js';
 import { IsArrEmpty, IsPlainObjEmpty, IsStrEmpty } from '../../../guards/formats/formats.js';
-import { IsArr, IsElement, IsNum, IsPlainObj, IsStr } from '../../../guards/data-types/data-types.js';
+import { IsArr, IsElement, IsNullOrUndefined, IsNum, IsPlainObj, IsStr } from '../../../guards/data-types/data-types.js';
 import { CountOf } from '../../../primitives/obj/obj.accessor.js';
 import ClassOf from '../../attr/attr.class.js';
 import IdOf from '../../attr/attr.id.js';
 import StyleOf from '../../attr/attr.style.js';
 import VerifyTag from '../tag-verifier/verifier.js';
+import { DefineProperty, Global } from '../../../custom/utils/custom.utils.js';
 
 /* -- Helpers -- */
 /**
@@ -310,3 +311,8 @@ const Create = {
     }
 };
 export default Create;
+
+if (IsNullOrUndefined(globalThis.DOM))
+    Global("DOM", {}, "soft");
+
+DefineProperty(globalThis.DOM, "Create", Create, "soft");

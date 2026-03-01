@@ -58,6 +58,21 @@ export const MathMLElementTags = [
     "msqrt", "mstyle", "msub", "msup", "msubsup", "mtable", "mtd", "mtext", "mtr", "munder", "munderover"
 ].reduce((Acc, Tag) => {
     const T = Tag.trim().toLowerCase();
-    Acc.set(T, { Generate: () => document.createElementNS("http://www.w3.org/1998/Math/MathML", T)});
+    Acc.set(T, { Generate: () => document.createElementNS("http://www.w3.org/1998/Math/MathML", T) });
     return Acc;
 }, new Map([]));
+
+/**
+ *  A collection of available element's XML namespace.
+ */
+export const XMLNameSpace = ["http://www.w3.org/1998/Math/MathML", "http://www.w3.org/1999/xhtml", "http://www.w3.org/2000/svg"];
+
+[
+    ["HTMLElementTags", HTMLElementTags], ["MathMLElementTags", MathMLElementTags],
+    ["SVGElementTags", SVGElementTags], ["XMLNameSpace", XMLNameSpace]
+].forEach((key, val) => {
+    Object.defineProperty(globalThis, key, {
+        value: val,
+        writable: false, configurable: true, enumerable: true
+    });
+});

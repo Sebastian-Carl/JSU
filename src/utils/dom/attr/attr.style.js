@@ -1,7 +1,8 @@
 import Emit from '../../custom/error/builder/error.builder.js';
 import { IsPlainObjEmpty, IsStrEmpty } from '../../guards/formats/formats.js';
-import { IsArr, IsElement, IsPlainObj, IsStr } from '../../guards/data-types/data-types.js';
+import { IsArr, IsElement, IsNullOrUndefined, IsPlainObj, IsStr } from '../../guards/data-types/data-types.js';
 import { CountOf } from '../../primitives/obj/obj.accessor.js';
+import { DefineProperty, Global } from '../../custom/utils/custom.utils.js';
 
 /**
  *  Access the element's style object and returns a collection object methods for it.
@@ -126,3 +127,8 @@ export default function StyleOf(element) {
         }
     }
 }
+
+if (IsNullOrUndefined(globalThis.DOM))
+    Global("DOM", {}, "soft");
+
+DefineProperty(globalThis.DOM, "StyleOf", StyleOf, "soft");

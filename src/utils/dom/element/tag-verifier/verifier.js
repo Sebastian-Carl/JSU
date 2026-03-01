@@ -1,7 +1,8 @@
 import Emit from '../../../custom/error/builder/error.builder.js';
 import { IsStrEmpty } from '../../../guards/formats/formats.js';
-import { IsStr } from '../../../guards/data-types/data-types.js';
+import { IsNullOrUndefined, IsStr } from '../../../guards/data-types/data-types.js';
 import * as VAR from '../../../variables.js';
+import { DefineProperty, Global } from '../../../custom/utils/custom.utils.js';
 
 /**
  *  Verifies the specified tag of `Element` and returns its representative `Element`.
@@ -58,3 +59,8 @@ export default function VerifyTag(tag) {
         }
     }
 }
+
+if (IsNullOrUndefined(globalThis.DOM))
+    Global("DOM", {}, "soft");
+
+DefineProperty(globalThis.DOM, "VerifyTag", VerifyTag, "soft");

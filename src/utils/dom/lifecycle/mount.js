@@ -1,5 +1,6 @@
 import Emit from '../../custom/error/builder/error.builder.js';
-import { IsChildNode, IsParentNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
+import { DefineProperty, Global } from '../../custom/utils/custom.utils.js';
+import { IsChildNode, IsNullOrUndefined, IsParentNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
 
 /**
  *  Mounts the given `childNode` to the specified `parentNode`.
@@ -46,3 +47,8 @@ export default function Mount(parentNode, ...childNodes) {
         parentNode.appendChild(Node);
     }
 }
+
+if (IsNullOrUndefined(globalThis.DOM))
+    Global("DOM", {}, "soft");
+
+DefineProperty(globalThis.DOM, "Mount", Mount, "soft")

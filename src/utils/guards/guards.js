@@ -1,3 +1,4 @@
+import { DefineProperty, Global } from '../custom/utils/custom.utils.js';
 import * as T from "./data-types/data-types.js";
 import * as F from "./formats/formats.js";
 
@@ -6,16 +7,15 @@ import * as F from "./formats/formats.js";
  *  ***function*** and many more!
  */
 export default function Guards() {
-  const acc = {};
+  const GuardsAPI = {};
 
-  for (const method of [...Object.values(T), ...Object.values(F)]) {
-    if (!T.IsNullOrUndefined(method.name) && !F.IsStrEmpty(method.name) && !acc[method.name]) {
-      Object.defineProperty(acc, method.name, {
-        value: method,
-        writable: false, configurable: false, enumerable: true,
-      });
-    }
+  for (const Method of [...Object.values(T), ...Object.values(F)]) {
+    const Key = Method.name;
+    if (!T.IsNullOrUndefined(Key) && !F.IsStrEmpty(Key) && !T.IsPropertyAt(GuardsAPI, Key))
+      DefineProperty(GuardsAPI, Key, Method, "med");
   }
 
-  return acc;
+  Global("Guards", GuardsAPI, "soft");
 }
+
+Guards();

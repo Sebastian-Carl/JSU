@@ -1,19 +1,20 @@
+import { IsNullOrUndefined, IsPropertyAt } from '../guards/data-types/data-types.js';
+import { IsStrEmpty } from '../guards/formats/formats.js';
 import * as CustomUtils from "./utils/custom.utils.js";
 import Generator from './utils/generator/generator.js';
 
 /**
- *  Returns a collection of customized `@modules` and/or `@utilities`.
+ *  Attach a collection of customized `@modules` and/or `@utilities` to `globalThis`.
  */
 export default function Custom() {
-    const acc = {};
+    const CustomAPI = {};
 
-    for (const method of [...Object.values(CustomUtils), Generator]) {
-        if (!(method.name === null || method.name === undefined) && method.name.trim().length > 0 && !acc[method.name])
-            Object.defineProperty(acc, method.name, {
-                value: method,
-                writable: false, configurable: false, enumerable: true
-            });
+    for (const Method of [...Object.values(CustomUtils), Generator]) {
+        const Key = CustomUtils.NameOf(Method);
+        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !IsPropertyAt(CustomAPI, Key) && !(Key === "(ANONYMOUS)"))
+            CustomUtils.DefineProperty(CustomAPI, Key, Method, "med");
     }
 
-    return acc;
+    CustomUtils.Global("Custom", CustomAPI, "soft");
 }
+Custom();

@@ -4,6 +4,8 @@ type SVGElementTags = SVGElementTagNameMap;
 type ElementTags = HTMLElementTags & MathElementTags & SVGElementTags;
 type CSSDeclaration = CSSStyleDeclaration;
 
+type XMLNameSpace = "http://www.w3.org/1998/Math/MathML" | "http://www.w3.org/1999/xhtml" | "http://www.w3.org/2000/svg";
+
 type HTMLElementConfig = {
     ClassNames?: string | string[];
     Id?: string;
@@ -37,3 +39,17 @@ type SVGElementConfig = {
     XML_Space?: "default" | "preserve";
     [OtherAttr: string]: any;
 }
+
+type ResolveTag<T extends keyof ElementTags> =
+    T extends keyof HTMLElementTags ? HTMLElementTags[T] :
+    T extends keyof MathElementTags ? MathElementTags[T] :
+    T extends keyof SVGElementTags ? SVGElementTags[T] : null;
+
+type ResolveTagNS<NS extends XMLNameSpace, T extends keyof ElementTags> =
+    NS extends "http://www.w3.org/1998/Math/MathML" ?
+        T extends keyof MathElementTags ? MathElementTags[T] : MathMLElement :
+    NS extends "http://www.w3.org/1999/xhtml" ?
+        T extends keyof HTMLElementTags ? HTMLElementTags[T] : HTMLElement :
+    NS extends "http://www.w3.org/2000/svg" ?
+        T extends keyof SVGElementTags ? SVGElementTags[T] : SVGElement :
+    never;

@@ -25,6 +25,11 @@ interface DomAPI {
     IdOf(element: Element): DOMIdOfAPI;
 
     /**
+     *  A enhanced version collection of element retrieval methods.
+     */
+    GetElementBy: DOMGetElementByAPI;
+
+    /**
      *  Mounts the given `childNode` to its given `parentNode`.
      *
      *  @param parentNode - The parent node to mount the given child node.
@@ -39,6 +44,40 @@ interface DomAPI {
      *  @param childNodes - The given collection of child nodes to mount.
      */
     Mount(parentNode: ParentNode, ...childNodes: ChildNode[]): void;
+
+    /**
+     *  Search and retrieves the first element to match the given selector.
+     *
+     *  @param selector - The selector of element to search.
+     *  @returns The element that matches the given selector.
+     */
+    Select<T extends keyof ElementTags>(selector: T): ResolveTag<T>;
+
+    /**
+     *  Search and retrieves the first element to match the given selector.
+     *
+     *  @param selector - The selector of element to search.
+     *  @param root - The parent element to search the given element selector at. (Default: Document)
+     *  @returns The element that matches the given selector.
+     */
+    Select<T extends keyof ElementTags>(selector: T, root: ParentNode): ResolveTag<T>;
+
+    /**
+     *  Search and retrieves the collection of elements that matches the given selector.
+     *
+     *  @param selector - The selector of elements to search.
+     *  @returns The collection of elements that matches the given selector.
+     */
+    SelectAll<T extends keyof ElementTags>(selector: T): ResolveTag<T>;
+
+    /**
+     *  Search and retrieves the collection of elements that matches the given selector.
+     *
+     *  @param selector - The selector of elements to search.
+     *  @param root - The parent element to search the given element selector at. (Default: Document)
+     *  @returns The collection of elements that matches the given selector.
+     */
+    SelectAll<T extends keyof ElementTags>(selector: T, root?: ParentNode): ResolveTag<T>;
 
     /**
      *  Access the element's `CSSStyleDeclaration` and returns a set collection of for it.
@@ -104,4 +143,5 @@ interface EnhancedGlobalUtilsAPI {
     readonly Guards: GuardsAPI;
     readonly Primitives: PrimitivesAPI;
     readonly STORAGE: StorageAPI;
+    readonly GetElementBy: DOMGetElementByAPI;
 }

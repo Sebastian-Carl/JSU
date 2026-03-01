@@ -10,8 +10,7 @@ interface DOMCreateAPI {
      *  @throws {ArgumentError} - When parameter tag is not in string format.
      *  @throws {NoSuchElementTagError} - When the given tag of `HTMLElement` is not qualified.
      */
-    HTMLElement<T extends keyof HTMLElementTags>
-        (tag: T): T extends keyof HTMLElementTags ? HTMLElementTags[T] : null;
+    HTMLElement<T extends keyof HTMLElementTags>(tag: T): ResolveTag<T>;
 
     /**
      *  Generates an instance of `HTMLElement` with the given qualified tag.
@@ -22,8 +21,7 @@ interface DOMCreateAPI {
      *  @throws {ArgumentError} - When parameter tag is not in string format.
      *  @throws {NoSuchElementTagError} - When the given tag of `HTMLElement` is not qualified.
      */
-    HTMLElement<T extends keyof HTMLElementTags>
-        (tag: T, conf?: HTMLElementConfig): T extends keyof HTMLElementTags ? HTMLElementTags[T] : null;
+    HTMLElement<T extends keyof HTMLElementTags>(tag: T, conf?: HTMLElementConfig): ResolveTag<T>;
 
     /**
      *  Generates an instance of `MathMLElement` with the given qualified tag.
@@ -33,8 +31,7 @@ interface DOMCreateAPI {
      *  @throws {ArgumentError} - When parameter tag is not in string format.
      *  @throws {NoSuchElementTagError} - When the given tag of `MathMLElement` is not qualified.
      */
-    MathElement<T extends keyof MathElementTags>
-        (tag: T): T extends keyof MathElementTags ? MathElementTags[T] : null;
+    MathElement<T extends keyof MathElementTags>(tag: T): ResolveTag<T>;
 
     /**
      *  Generates an instance of `MathMLElement` with the given qualified tag.
@@ -45,8 +42,7 @@ interface DOMCreateAPI {
      *  @throws {ArgumentError} - When parameter tag is not in string format.
      *  @throws {NoSuchElementTagError} - When the given tag of `MathMLElement` is not qualified.
      */
-    MathElement<T extends keyof MathElementTags>
-        (tag: T, conf?: MathElementConfig): T extends keyof MathElementTags ? MathElementTags[T] : null;
+    MathElement<T extends keyof MathElementTags>(tag: T, conf?: MathElementConfig): ResolveTag<T>;
 
     /**
      *  Generates an instance of `SVGElement` with the given qualified tag.
@@ -56,8 +52,7 @@ interface DOMCreateAPI {
      *  @throws {ArgumentError} - When parameter tag is not in string format.
      *  @throws {NoSuchElementTagError} - When the given tag of `SVGElement` is not qualified.
      */
-    SVGElement<T extends keyof SVGElementTags>
-        (tag: T): T extends keyof SVGElementTags ? SVGElementTags[T] : null;
+    SVGElement<T extends keyof SVGElementTags>(tag: T): ResolveTag<T>;
 
     /**
      *  Generates an instance of `SVGElement` with the given qualified tag.
@@ -68,6 +63,5 @@ interface DOMCreateAPI {
      *  @throws {ArgumentError} - When parameter tag is not in string format.
      *  @throws {NoSuchElementTagError} - When the given tag of `SVGElement` is not qualified.
      */
-    SVGElement<T extends keyof SVGElementTags>
-        (tag: T, conf?: SVGElementConfig): T extends keyof SVGElementTags ? SVGElementTags[T] : null;
+    SVGElement<T extends keyof SVGElementTags>(tag: T, conf?: SVGElementConfig): ResolveTag<T>;
 }

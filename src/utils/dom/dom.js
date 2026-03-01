@@ -1,26 +1,29 @@
-import { NameOf } from '../custom/utils/custom.utils.js';
+import { DefineProperty, Global, NameOf } from '../custom/utils/custom.utils.js';
 import ClassOf from './attr/attr.class.js';
 import StyleOf from './attr/attr.style.js';
 import Create from './element/create/element.create.js';
 import VerifyTag from './element/tag-verifier/verifier.js';
 import Mount from './lifecycle/mount.js';
 import Unmount from './lifecycle/unmount.js';
+import { Select, SelectAll } from "./element/query/dom.query.js";
+import GetElementBy from "./element/getElementBy/dom.getElementBy.js";
+import { IsNullOrUndefined, IsPropertyAt } from '../guards/data-types/data-types.js';
+import { IsStrEmpty } from '../guards/formats/formats.js';
 
 /**
  *  A customized or enhanced collection of `DOM` methods.
  */
 export default function DOM() {
-    const Acc = {};
+    const DomAPI = {};
 
-    for (const method of [ClassOf, Create, Mount, Unmount, StyleOf, VerifyTag]) {
-        const Name = NameOf(method);
+    for (const Method of [ClassOf, Create, GetElementBy, Mount, Unmount, Select, SelectAll, StyleOf, VerifyTag]) {
+        const Key = NameOf(Method);
 
-        if (!(Name === "(ANONYMOUS)"))
-            Object.defineProperty(Acc, Name, {
-                value: method,
-                writable: false, configurable: false, enumerable: true
-            })
+        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !IsPropertyAt(DomAPI, Key) && !(Key === "(ANONYMOUS)"))
+            DefineProperty(DomAPI, Key, Method, "med");
     }
 
-    return Acc;
+    Global("DOM", DomAPI, "soft");
 }
+
+DOM();

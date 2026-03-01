@@ -113,7 +113,11 @@ export function IsParentNode(arg) {
     if (arg === null || arg === undefined)
         return false;
 
-    return "children" in arg && "firstElementChild" in arg && "lastElementChild" in arg;
+    const IsQueryAble = [
+        "getElementsByClassName", "getElementsByTagName", "getElementsByTagNameNS"
+    ].every(prop => typeof arg[prop] === "function");
+
+    return "children" in arg && "firstElementChild" in arg && "lastElementChild" in arg && IsQueryAble;
 }
 
 /**
@@ -123,10 +127,13 @@ export function IsParentNode(arg) {
  *  @returns { arg is ChildNode }
  */
 export function IsChildNode(arg) {
-    if (arg === null || arg === undefined)
+    if (IsNullOrUndefined(arg))
         return false;
 
-    return "remove" in arg && typeof arg.remove === "function";
+    return (
+        typeof arg.after === "function" && typeof arg.before === "function" &&
+        typeof arg.remove === "function" && typeof arg.replaceWith === "function"
+    );
 }
 
 /**
@@ -192,3 +199,18 @@ export function IsPropertyAt(arg, property) {
 
     return Object.hasOwn(arg, property) || property in arg;
 }
+
+if (IsNullOrUndefined(globalThis.Guards))
+    Object.defineProperty(globalThis, "Guards", {
+        value: {},
+        writable: false, configurable: true, enumerable: true
+    });
+
+[
+    IsArr, IsBool, IsChildNode, IsElement, IsFunc, IsHTMLElement, IsIterator, IsMapObj,
+    IsNode, IsNullOrUndefined, IsNum, IsParentNode, IsPlainObj, IsPropertyAt, IsRegExp,
+    IsSetObj, IsStr, IsUnknownElement,
+].forEach(guard => Object.defineProperty(globalThis.Guards, guard.name, {
+    value: guard,
+    writable: false, configurable: true, enumerable: true
+}));

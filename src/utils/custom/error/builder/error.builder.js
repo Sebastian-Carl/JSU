@@ -1,3 +1,5 @@
+import { IsNullOrUndefined } from '../../../guards/data-types/data-types.js';
+import { DefineProperty, Global } from '../../utils/custom.utils.js';
 import * as _ from "../constructor/error.custom.js";
 
 /* Meta Builder */
@@ -179,3 +181,8 @@ const Emit = {
 }
 
 export default Emit;
+
+if (IsNullOrUndefined(globalThis.ERROR))
+    Global("ERROR", {}, "soft");
+
+DefineProperty(globalThis.ERROR, "Emit", Emit, "soft");

@@ -1,6 +1,7 @@
 import Emit from '../../custom/error/builder/error.builder.js';
 import { IsStrEmpty } from '../../guards/formats/formats.js';
 import { IsElement, IsNullOrUndefined, IsStr } from '../../guards/data-types/data-types.js';
+import { DefineProperty, Global } from '../../custom/utils/custom.utils.js';
 
 /**
  *  Access the `id` attribute of element and returns a set of methods for it.
@@ -62,3 +63,8 @@ export default function IdOf(element) {
         },
     }
 }
+
+if (IsNullOrUndefined(globalThis.DOM))
+    Global("DOM", {}, "soft");
+
+DefineProperty(globalThis.DOM, "IdOf", IdOf, "soft");
