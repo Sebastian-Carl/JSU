@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A ready-to-use JavaScripts custom utilities such as types validations, formats validations, formatter, and many more!",
   "main": "index.js",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "exports": {
     ".": {
       "require": "./src/index.js"
@@ -122,5 +124,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sebastian-Carl/JSU.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sebastian-Carl/JSU/issues"
+  },
+  "homepage": "https://github.com/Sebastian-Carl/JSU#readme"
 }
