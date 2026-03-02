@@ -4,12 +4,12 @@
   "description": "A ready-to-use JavaScripts custom utilities such as types validations, formats validations, formatter, and many more!",
   "main": "index.js",
   "files": [
-    "src"
+    "src",
+    "index.html",
+    "index.css"
   ],
+  "types": "./src/types/global.d.ts",
   "exports": {
-    ".": {
-      "require": "./src/index.js"
-    },
     "./custom": {
       "require": "./src/utils/custom/custom.js",
       "types": "./types/custom/custom.d.ts"
@@ -39,7 +39,7 @@
       "types": "./types/storage/storage.d.ts"
     },
     "./global": {
-      "require": "./src/utils/global.js",
+      "require": "./src/global.js",
       "types": "./types/global.d.ts"
     },
     "./variables": {
