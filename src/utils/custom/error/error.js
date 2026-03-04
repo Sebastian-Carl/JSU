@@ -6,7 +6,6 @@ import { IsStrEmpty } from '../../guards/formats/formats.js';
 
 /**
  *  Returns a customized collection of `@error_class_modules` and `@error_class_builder_modules`.
- *  @returns {import('./constructor/error.custom.js').ErrorConstructorsAPI & import('./builder/error.builder.js').ErrorEmitterAPI}
  */
 function ERROR() {
     const ErrorAPI = {};

@@ -1,46 +1,37 @@
 {
   "name": "@carlsebastian/jsu",
-  "version": "1.0.0",
+  "version": "1.0.40",
   "description": "A ready-to-use JavaScripts custom utilities such as types validations, formats validations, formatter, and many more!",
-  "main": "index.js",
+  "main": "./global.js",
+  "types": "./src/types/global.d.ts",
   "files": [
     "src",
-    "index.html",
-    "index.css"
+    "global.js"
   ],
-  "types": "./src/types/global.d.ts",
   "exports": {
+    ".": {
+      "require": "./global.js",
+      "types": "./src/types/global.d.ts"
+    },
     "./custom": {
       "require": "./src/utils/custom/custom.js",
-      "types": "./types/custom/custom.d.ts"
+      "types": "./src/types/custom/custom.d.ts"
     },
     "./custom/error": {
       "require": "./src/utils/custom/error/error.js",
-      "types": "./types/custom/error/error.d.ts"
-    },
-    "./custom/utils": {
-      "require": "./src/utils/custom/utils/custom.utils.js",
-      "types": "./types/custom/utils/custom.utils.d.ts"
+      "types": "./src/types/custom/error/error.d.ts"
     },
     "./dom": {
       "require": "./src/utils/dom/dom.js",
-      "types": "./types/dom/dom.d.ts"
-    },
-    "./guards": {
-      "require": "./src/utils/guards/guards.js",
-      "types": "./types/guards/guards.d.ts"
+      "types": "./src/types/dom/dom.d.ts"
     },
     "./primitives": {
       "require": "./src/utils/primitives/primitives.js",
-      "types": "./types/primitives/primitives.d.ts"
+      "types": "./src/types/primitives/primitives.d.ts"
     },
     "./storage": {
       "require": "./src/utils/storage/storage.js",
-      "types": "./types/storage/storage.d.ts"
-    },
-    "./global": {
-      "require": "./src/global.js",
-      "types": "./types/global.d.ts"
+      "types": "./src/types/storage/storage.d.ts"
     },
     "./variables": {
       "require": "./src/utils/variables.js"
@@ -49,9 +40,6 @@
   "scripts": {
     "dev": "node ./src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "module",
   "repository": {
     "type": "git",
@@ -60,5 +48,8 @@
   "bugs": {
     "url": "https://github.com/Sebastian-Carl/JSU/issues"
   },
-  "homepage": "https://github.com/Sebastian-Carl/JSU#readme"
+  "homepage": "https://github.com/Sebastian-Carl/JSU#readme",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
