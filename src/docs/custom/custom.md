@@ -6,8 +6,7 @@
   - [Table Of Contents](#table-of-contents)
   - [About](#about)
   - [Usage](#usage)
-  - [Properties / Methods](#properties--methods)
-  - [Example Usage](#example-usage)
+  - [Properties](#properties)
   - [Navigate To](#navigate-to)
 
 ## About
@@ -17,42 +16,23 @@
 ## Usage
 
 ```js
-import "@carlsebastian/jsu"; // Loads all available APIs of JSU.
+// Loads all available JSU APIs from your project's runtime.
+import "@carlsebastian/jsu";
 
-// OR specific module.
-
-import "@carlsebastian/jsu/custom"; // Loads only Custom API of JSU.
+// Only loads the Custom API of JSU from your project's runtime.
+import "@carlsebastian/jsu/custom";
 ```
 
-## Properties / Methods
+## Properties
 
-- [Clamp()](./utils/clamp.md) - Mutates the given numerical value within the given `minimum` and `maximum` range.
-- [ConstructorOrTypeOf()](./utils/constructorOrTypeOf.md) - Retrieves the `constructor` or `type` of the given argument.
-- [Generator()](./utils/generator/generator.md) - A customized generator constructor for generating randomized `tokens`, `characters`, and `integer`.
-- [NameOf()](./utils/nameOf.md) - Retrieves the `name` property of the given object.
-
-## Example Usage
-
-```js
-// #: Ensures that the given numerical value does not exceeds the given range.
-const Pos = 10, minR = 2, maxR = 7;
-console.log(Custom.Clamp(Pos, minR, maxR)); // 7
-
-// #: Retrieves the constructor or type of the given argument.
-const Obj = {};
-console.log(Custom.ConstructorOrTypeOf(Obj)); // Object
-
-// #: Generate a token that can be use for session id, user-id, password generator.
-const Generate = new Custom.Generator(10, { secure: true });
-console.log(Generate.NewToken()); // Generated token.
-
-// #: Retrieves the name property of the given object.
-const O = { NaME: "o1" };
-console.log(Custom.NameOf(O)); // 'o1'
-```
+- [Clamp()](./utils/clamp.md) - *Mutates the given numerical value within the given **minimum** and **maximum** range.*
+- [ConstructorOrTypeOf()](./utils/constructorOrTypeOf.md) - *Retrieves the **constructor** or **type** of the given argument.*
+- [Generator()](./utils/generator/generator.md) - *A customized generator constructor for generating randomized **tokens**, **characters**, and **integer**.*
+- [NameOf()](./utils/nameOf.md) - *Retrieves the **name** property of the given object.*
 
 ## Navigate To
 
-- [JSU - APIs](../api/api.md) - A complete collection list of available APIs of ***JSU***.
+- [APIs](../api/api.md) - *A complete collection list of available APIs of ***JSU***.*
+  - [ERROR](./error/error.md) - *An API that provides a collection of customized and/or enhanced error classes.*
 
-- [JSU - README](../../../README.MD) - JSU's Homepage Documentation.
+- [JSU - README](../../../README.MD) - *JSU Homepage Documentation.*

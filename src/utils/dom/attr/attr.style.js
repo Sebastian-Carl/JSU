@@ -1,4 +1,4 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { IsPlainObjEmpty, IsStrEmpty } from '../../guards/formats/formats.js';
 import { IsArr, IsElement, IsPlainObj, IsStr } from '../../guards/data-types/data-types.js';
 import { CountOf } from '../../primitives/obj/obj.accessor.js';
@@ -13,10 +13,10 @@ export default function StyleOf(element) {
     const Method = "StyleOf";
 
     if (!IsElement(element))
-        Emit._ArgumentError(Method, "element", element, "Element");
+        Raise._ArgumentError(Method, "element", element, "Element");
 
     if (!("style" in element))
-        Emit._NotSupportedError(Method, "style");
+        Raise._NotSupportedError(Method, "style");
 
     /** @type { CSSStyleDeclaration } */
     const StyleObj = element.style;
@@ -31,7 +31,7 @@ export default function StyleOf(element) {
             const Caller = `${Method}.Set`;
 
             if (!IsPlainObj(CSSObj))
-                Emit._ArgumentError(Caller, "CSSObj", CSSObj, "Plain Object ({})");
+                Raise._ArgumentError(Caller, "CSSObj", CSSObj, "Plain Object ({})");
 
             if (IsPlainObjEmpty(CSSObj))
                 return;
@@ -108,7 +108,7 @@ export default function StyleOf(element) {
         Get(CSSProperty) {
             const Caller = `${Method}.Get`;
             if (!IsStr(CSSProperty))
-                Emit._ArgumentError(Caller, "CSSProperty", CSSProperty, "String");
+                Raise._ArgumentError(Caller, "CSSProperty", CSSProperty, "String");
 
             if (IsStrEmpty(CSSProperty)) {
                 console.warn(`${Caller}(@CSSProperty: ${CSSProperty}): Expects a non-empty string key value! (Exited with null)`);

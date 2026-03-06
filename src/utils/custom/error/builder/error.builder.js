@@ -39,11 +39,11 @@ const BuildMeta = (message, c_message, emitter_id, argument_id, otherArgument, g
  *   - The contents of available error builder(s) in this object are fixed, only the specified or
  *     required value are changing.
  */
-const Emit = {
+const Raise = {
     /**
      *  Name of this object.
      */
-    name: "Emit",
+    name: "Raise",
 
     /**
      *  Builds and emit the contents of `@ArgumentError`.
@@ -178,4 +178,4 @@ const Emit = {
     }
 }
 
-export default Emit;
+export default Raise;

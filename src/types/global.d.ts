@@ -8,14 +8,14 @@
 /// <reference types="./storage/storage.d.ts" />
 
 declare global {
-    readonly var Utils: EnhancedGlobalUtilsAPI;
-    readonly var DOM: DomAPI;
     readonly var Custom: CustomAPI;
+    readonly var DOM: DomAPI;
     readonly var ERROR: ErrorAPI;
+    readonly var GetElementBy: DOMGetElementByAPI;
     readonly var Guards: GuardsAPI;
     readonly var Primitives: PrimitivesAPI;
     readonly var STORAGE: StorageAPI;
-    readonly var GetElementBy: DOMGetElementByAPI;
+    readonly var Variables: VariablesAPI
 }
 
 export { };

@@ -1,4 +1,4 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { IsChildNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
 
 /**
@@ -31,7 +31,7 @@ export default function Unmount(...childNodes) {
 
     for (const Node of childNodes) {
         if (!IsChildNode(Node))
-            Emit._ArgumentError(Method, PCN, Node, "ChildNode");
+            Raise._ArgumentError(Method, PCN, Node, "ChildNode");
 
         if (!IsPropertyAt(Node, "remove")) {
             console.warn(`${Method}(@${PCN}${ICtr > 1 ? `[${Node}]` : `: ${Node}`}: NOT_SUPPORTED_METHOD): A given child node does not support the 'remove()' method! (${ICtr > 1 ? "Skipped" : "Exited"})`);

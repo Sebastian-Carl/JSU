@@ -1,4 +1,4 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 
 /* Helper */
 /**
@@ -14,10 +14,10 @@ function ValidateStorageKey(caller, sessionKey, processId) {
         ? caller : `STORAGE.SESSION.(ANONYMOUS)`;
 
     if (typeof sessionKey !== "string")
-        Emit._ArgumentError(Method, "sessionKey", sessionKey, "String");
+        Raise._ArgumentError(Method, "sessionKey", sessionKey, "String");
 
     if (typeof processId !== "string")
-        Emit._ArgumentError(Method, "processId", processId, "String");
+        Raise._ArgumentError(Method, "processId", processId, "String");
 
     const Key = sessionKey.trim();
     if (Key.length === 0) {

@@ -14,8 +14,9 @@
 
 ## API List
 
-- [Custom API](../custom/custom.md) - ***An API that contains only customized and/or enhanced version of utilities, methods, and more.***
+- [Custom API](../custom/custom.md) - *An API that provides a collection of customized and/or enhanced utilities or objects.*
+- [ERROR API](../custom/error/error.md) - *An API that provides a collection of customized and/or enhanced error classes.*
 
 ## Navigate To
 
-- [JSU - README](../../../README.MD) - JSU's Homepage Documentation.
+- [JSU - README](../../../README.MD) - *JSU Homepage Documentation.*

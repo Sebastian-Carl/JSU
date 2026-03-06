@@ -1,4 +1,4 @@
-import Emit from '../../../custom/error/builder/error.builder.js';
+import Raise from '../../../custom/error/builder/error.builder.js';
 import { IsStr, IsParentNode } from '../../../guards/data-types/data-types.js';
 import { IsStrEmpty } from '../../../guards/formats/formats.js';
 
@@ -23,7 +23,7 @@ export function Select(selector, root = document) {
     const Method = "Select";
 
     if (!IsStr(selector))
-        Emit._ArgumentError(Method, "selector", selector, "String");
+        Raise._ArgumentError(Method, "selector", selector, "String");
 
     if (IsStrEmpty(selector)) {
         console.warn(`${Method}(@selector: \'\'): Expects a non-empty-string! (Exited with null)`);
@@ -59,7 +59,7 @@ export function SelectAll(selector, root = document) {
     const Method = "SelectAll";
 
     if (!IsStr(selector))
-        Emit._ArgumentError(Method, "selector", selector, "String");
+        Raise._ArgumentError(Method, "selector", selector, "String");
 
     if (IsStrEmpty(selector)) {
         console.warn(`${Method}(@selector: \'\'): Expects a non-empty-string! (Exited with null)`);

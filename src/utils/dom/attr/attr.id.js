@@ -1,4 +1,4 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { IsStrEmpty } from '../../guards/formats/formats.js';
 import { IsElement, IsNullOrUndefined, IsStr } from '../../guards/data-types/data-types.js';
 
@@ -12,7 +12,7 @@ export default function IdOf(element) {
     const Method = "IdOf";
 
     if (!IsElement(element))
-        Emit._ArgumentError(Method, "element", element, "Element");
+        Raise._ArgumentError(Method, "element", element, "Element");
 
     return {
         /**
@@ -49,7 +49,7 @@ export default function IdOf(element) {
             const Caller = `${Method}.Set`;
 
             if (!IsStr(id))
-                Emit._ArgumentError(Caller, "id", id, "String");
+                Raise._ArgumentError(Caller, "id", id, "String");
 
             if (IsStrEmpty(id)) {
                 element.removeAttribute("id");

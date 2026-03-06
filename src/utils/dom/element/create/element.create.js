@@ -1,4 +1,4 @@
-import Emit from '../../../custom/error/builder/error.builder.js';
+import Raise from '../../../custom/error/builder/error.builder.js';
 import { IsArrEmpty, IsPlainObjEmpty, IsStrEmpty } from '../../../guards/formats/formats.js';
 import { IsArr, IsElement, IsNum, IsPlainObj, IsStr } from '../../../guards/data-types/data-types.js';
 import { CountOf } from '../../../primitives/obj/obj.accessor.js';
@@ -20,10 +20,10 @@ function ValidateTagAndConfiguration(caller, tag, conf) {
     const Caller = IsStr(caller) ? caller : "(Anonymous)";
 
     if (!IsStr(tag))
-        Emit._ArgumentError(Caller, "tag", tag, "String");
+        Raise._ArgumentError(Caller, "tag", tag, "String");
 
     if (!IsPlainObj(conf))
-        Emit._ArgumentError(Caller, "conf", conf, "Plain Object ({})");
+        Raise._ArgumentError(Caller, "conf", conf, "Plain Object ({})");
 }
 
 /**
@@ -160,7 +160,7 @@ const Create = {
                 if (!IsNum(Conf.Tabindex)) {
                     const ParsedIndex = parseInt(Conf.TabIndex, 10);
                     if (!IsNum(ParsedIndex))
-                        Emit._ArgumentError(Method, "conf.TabIndex", Conf.TabIndex, "Number");
+                        Raise._ArgumentError(Method, "conf.TabIndex", Conf.TabIndex, "Number");
 
                     Conf.TabIndex = ParsedIndex;
                 }
@@ -170,7 +170,7 @@ const Create = {
 
             if (Conf.XML_Language) {
                 if (!IsStr(Conf.XML_Language))
-                    Emit._ArgumentError(Method, "conf.XML_Language", Conf.XML_Language, "String");
+                    Raise._ArgumentError(Method, "conf.XML_Language", Conf.XML_Language, "String");
 
                 if (!IsStrEmpty(Conf.XML_Language))
                     ThisElement.setAttribute("xml:lang", Conf.XML_Language);
@@ -178,7 +178,7 @@ const Create = {
 
             if (Conf.XML_Space) {
                 if (!IsStr(Conf.XML_Space))
-                    Emit._ArgumentError(Method, "conf.XML_Space", Conf.XML_Space, "String");
+                    Raise._ArgumentError(Method, "conf.XML_Space", Conf.XML_Space, "String");
 
                 if (IsStrEmpty(Conf.XML_Space) || Conf.XML_Space !== "default" && Conf.XML_Space !== "preserve")
                     Conf.XML_Space = "default";
@@ -223,7 +223,7 @@ const Create = {
         if (CountOf(Conf) > 0) {
             if (Conf.Data) {
                 if (!IsPlainObj(Conf.Data))
-                    Emit._ArgumentError(Method, "conf.Data", Conf.Data, "Plain Object ({})");
+                    Raise._ArgumentError(Method, "conf.Data", Conf.Data, "Plain Object ({})");
 
                 if (CountOf(Conf.Data) > 0)
                     for (const [DK, DV] of Object.entries(Conf.Data)) {
@@ -241,7 +241,7 @@ const Create = {
 
             if (Conf.Dir) {
                 if (!IsStr(Conf.Dir))
-                    Emit._ArgumentError(Method, "conf.Dir", Conf.Dir, "String");
+                    Raise._ArgumentError(Method, "conf.Dir", Conf.Dir, "String");
 
                 if (IsStrEmpty(Conf.Dir) || (Conf.Dir !== "ltr" && Conf.Dir !== "rtl"))
                     Conf.Dir = "ltr";
@@ -254,7 +254,7 @@ const Create = {
 
             if (Conf.Href) {
                 if (!IsStr(Conf.Href))
-                    Emit._ArgumentError(Method, "conf.Href", Conf.Href, "String");
+                    Raise._ArgumentError(Method, "conf.Href", Conf.Href, "String");
 
                 if (!IsStrEmpty(Conf.Href))
                     ThisElement.setAttribute("href", Conf.Href);
@@ -262,7 +262,7 @@ const Create = {
 
             if (Conf.Id) {
                 if (!IsStr(Conf.Id))
-                    Emit._ArgumentError(Method, "conf.Id", Conf.Id, "String");
+                    Raise._ArgumentError(Method, "conf.Id", Conf.Id, "String");
 
                 if (!IsStrEmpty(Conf.Id))
                     ThisElement.id = Conf.Id;
@@ -270,7 +270,7 @@ const Create = {
 
             if (Conf.ScriptLevel) {
                 if (!IsStr(Conf.ScriptLevel))
-                    Emit._ArgumentError(Method, "conf.ScriptLevel", Conf.ScriptLevel, "String");
+                    Raise._ArgumentError(Method, "conf.ScriptLevel", Conf.ScriptLevel, "String");
 
                 if (!IsStrEmpty(Conf.ScriptLevel))
                     ThisElement.setAttribute("scriptlevel", Conf.ScriptLevel);
@@ -278,7 +278,7 @@ const Create = {
 
             if (Conf.MathBackground) {
                 if (!IsStr(Conf.MathBackground))
-                    Emit._ArgumentError(Method, "conf.MathBackground", Conf.MathBackground, "String");
+                    Raise._ArgumentError(Method, "conf.MathBackground", Conf.MathBackground, "String");
 
                 if (!IsStrEmpty(Conf.MathBackground))
                     ThisElement.setAttribute("mathbackground", Conf.MathBackground);
@@ -286,7 +286,7 @@ const Create = {
 
             if (Conf.MathColor) {
                 if (!IsStr(Conf.MathColor))
-                    Emit._ArgumentError(Method, "conf.MathColor", Conf.MathColor, "String");
+                    Raise._ArgumentError(Method, "conf.MathColor", Conf.MathColor, "String");
 
                 if (!IsStrEmpty(Conf.MathColor))
                     ThisElement.setAttribute("mathcolor", Conf.MathColor);
@@ -294,7 +294,7 @@ const Create = {
 
             if (Conf.MathSize) {
                 if (!IsStr(Conf.MathSize))
-                    Emit._ArgumentError(Method, "conf.MathSize", Conf.MathSize, "String");
+                    Raise._ArgumentError(Method, "conf.MathSize", Conf.MathSize, "String");
 
                 if (!IsStrEmpty(Conf.MathSize))
                     ThisElement.setAttribute("mathsize", Conf.MathSize);

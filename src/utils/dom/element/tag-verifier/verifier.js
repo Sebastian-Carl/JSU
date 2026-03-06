@@ -1,4 +1,4 @@
-import Emit from '../../../custom/error/builder/error.builder.js';
+import Raise from '../../../custom/error/builder/error.builder.js';
 import { IsStrEmpty } from '../../../guards/formats/formats.js';
 import { IsStr } from '../../../guards/data-types/data-types.js';
 import * as VAR from '../../../variables.js';
@@ -14,7 +14,7 @@ export default function VerifyTag(tag) {
     const Method = "VerifyTag";
 
     if (!IsStr(tag) || IsStrEmpty(tag))
-        Emit._ArgumentError(Method, "tag", tag, "String");
+        Raise._ArgumentError(Method, "tag", tag, "String");
 
     tag = tag.trim().toLowerCase()
     return {
@@ -26,7 +26,7 @@ export default function VerifyTag(tag) {
          */
         HTMLElement() {
             if (!VAR.HTMLElementTags.has(tag))
-                Emit._NoSuchElementTagError(`${Method}.HTMLElement`, "tag", tag, "HTMLElement");
+                Raise._NoSuchElementTagError(`${Method}.HTMLElement`, "tag", tag, "HTMLElement");
 
             return VAR.HTMLElementTags.get(tag)?.Generate() ?? null;
         },
@@ -39,7 +39,7 @@ export default function VerifyTag(tag) {
          */
         SVGElement() {
             if (!VAR.SVGElementTags.has(tag))
-                Emit._NoSuchElementTagError(`${Method}.SVGElement`, "tag", tag, "SVGElement");
+                Raise._NoSuchElementTagError(`${Method}.SVGElement`, "tag", tag, "SVGElement");
 
             return VAR.SVGElementTags.get(tag)?.Generate() ?? null;
         },
@@ -52,7 +52,7 @@ export default function VerifyTag(tag) {
          */
         MathElement() {
             if (!VAR.MathMLElementTags.has(tag))
-                Emit._NoSuchElementTagError(`${Method}.MathMLElement`, "tag", tag, "MathMLElement");
+                Raise._NoSuchElementTagError(`${Method}.MathMLElement`, "tag", tag, "MathMLElement");
 
             return VAR.MathMLElementTags.get(tag)?.Generate();
         }

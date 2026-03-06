@@ -10,9 +10,9 @@ type BaseMeta<OtherArguments extends {} = {}> = {
 
 type ArgumentErrorMeta = BaseMeta<{ ReceivedArgument: string, ExpectedArguments: string[] }>;
 type IndexOutOfBoundsErrorMeta = BaseMeta<{ Index: number, MaxBound: number }>;
-type InvalidPropertyError = BaseMeta<{ PropertyId: string }>;
-type MissingParameterError = BaseMeta<{ Value: string }>;
-type MissingPropertyError = BaseMeta<{ PropertyId: string }>;
-type NoSuchElementTagError = BaseMeta<{ Tag: string, TagOf: "HTMLElement" | "MathMLElement" | "SVGElement" }>;
-type NotSupportedError = BaseMeta;
-type UnknownPropertyError = BaseMeta<{ PropertyId: string }>;
+type InvalidPropertyErrorMeta = BaseMeta<{ PropertyId: string }>;
+type MissingParameterErrorMeta = BaseMeta<{ Value: string }>;
+type MissingPropertyErrorMeta = BaseMeta<{ PropertyId: string }>;
+type NoSuchElementTagErrorMeta = BaseMeta<{ Tag: string, TagOf: "HTMLElement" | "MathMLElement" | "SVGElement" }>;
+type NotSupportedErrorMeta = BaseMeta;
+type UnknownPropertyErrorMeta = BaseMeta<{ PropertyId: string }>;

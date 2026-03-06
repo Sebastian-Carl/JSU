@@ -1,7 +1,7 @@
 /**
  *  A collection of customized error emitter contents for `ErrorConstructorAPI`.
  */
-type ErrorEmitterAPI = {
+type ErrorRaiseAPI = {
     /**
      *  Builds and emit the contents of `ArgumentError`.
      *

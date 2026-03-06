@@ -1,4 +1,4 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { IsStrEmpty } from '../../guards/formats/formats.js';
 import { IsArr, IsElement, IsStr } from '../../guards/data-types/data-types.js';
 import { CountOf } from '../../primitives/obj/obj.accessor.js';
@@ -16,10 +16,10 @@ export default function ClassOf(element) {
     const Method = "ClassOf";
 
     if (!IsElement(element))
-        Emit._ArgumentError(Method, "element", element, "Element");
+        Raise._ArgumentError(Method, "element", element, "Element");
 
     if (!("classList" in element))
-        Emit._NotSupportedError(Method, "classList");
+        Raise._NotSupportedError(Method, "classList");
 
     const ClassList = element.classList;
     return {
@@ -165,7 +165,7 @@ export default function ClassOf(element) {
                 return false;
 
             if (forceState && typeof forceState !== "boolean")
-                Emit._ArgumentError(Caller, "forceState", forceState, "Boolean");
+                Raise._ArgumentError(Caller, "forceState", forceState, "Boolean");
 
             const Response = [];
             for (const token of tokens) {

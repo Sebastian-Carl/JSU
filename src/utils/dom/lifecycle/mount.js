@@ -1,4 +1,4 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { IsChildNode, IsParentNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
 
 /**
@@ -27,7 +27,7 @@ export default function Mount(parentNode, ...childNodes) {
     const Method = "Mount", PCN = childNodes.length > 1 ? "childNodes" : "childNode";
 
     if (!IsParentNode(parentNode))
-        Emit._ArgumentError(Method, "parentNode", parentNode, "ParentNode");
+        Raise._ArgumentError(Method, "parentNode", parentNode, "ParentNode");
 
     if (childNodes.length === 0) {
         console.warn(`${Method}(@childNode: NOT_PROVIDED): Expects at least 1 or more child node(s) to mount! (Exited)`);
@@ -41,7 +41,7 @@ export default function Mount(parentNode, ...childNodes) {
 
     for (const Node of childNodes) {
         if (!IsChildNode(Node))
-            Emit._ArgumentError(Method, PCN, Node, "ChildNode");
+            Raise._ArgumentError(Method, PCN, Node, "ChildNode");
 
         parentNode.appendChild(Node);
     }

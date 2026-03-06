@@ -1,4 +1,4 @@
-import Emit from '../../../custom/error/builder/error.builder.js';
+import Raise from '../../../custom/error/builder/error.builder.js';
 import { IsNullOrUndefined, IsParentNode, IsStr } from '../../../guards/data-types/data-types.js';
 import { IsStrEmpty } from '../../../guards/formats/formats.js';
 import { XMLNameSpace } from '../../../variables.js';
@@ -31,7 +31,7 @@ const GetElementBy = {
         const Method = `${this.name}.ID`;
 
         if (!IsStr(id))
-            Emit._ArgumentError(Method, "id", id, "String");
+            Raise._ArgumentError(Method, "id", id, "String");
 
         if (IsStrEmpty(id)) {
             console.warn(`${Method}(@id: \'\'): Expects a non-empty-string! (Exited with null)`);
@@ -65,7 +65,7 @@ const GetElementBy = {
         const Method = `${this.name}.ClassName`;
 
         if (!IsStr(cls))
-            Emit._ArgumentError(Method, "cls", cls, "String");
+            Raise._ArgumentError(Method, "cls", cls, "String");
 
         if (IsStrEmpty(cls)) {
             console.warn(`${Method}(@cls: \'\'): Expects a non-empty-string! (Exited with [])`);
@@ -101,7 +101,7 @@ const GetElementBy = {
         const Method = `${this.name}.TagName`;
 
         if (!IsStr(tag))
-            Emit._ArgumentError(Method, "tag", tag, "String");
+            Raise._ArgumentError(Method, "tag", tag, "String");
 
         if (IsStrEmpty(tag)) {
             console.warn(`${Method}(@tag: \'\'): Expects a non-empty-string! (Exited with [])`);
@@ -141,10 +141,10 @@ const GetElementBy = {
         const Method = `${this.name}.TagNameNS`;
 
         if (!IsStr(namespace))
-            Emit._ArgumentError(Method, "namespace", namespace, "String");
+            Raise._ArgumentError(Method, "namespace", namespace, "String");
 
         if (!IsStr(tag))
-            Emit._ArgumentError(Method, "tag", tag, "String");
+            Raise._ArgumentError(Method, "tag", tag, "String");
 
         if (IsStrEmpty(namespace)) {
             console.warn(`${Method}(@namespace: \'\'): Expects a non-empty-string! (Exited with [])`);

@@ -1,4 +1,4 @@
-import Emit from '../custom/error/builder/error.builder.js';
+import Raise from '../custom/error/builder/error.builder.js';
 import { Global } from '../custom/utils/custom.utils.js';
 import { IsNullOrUndefined, IsPropertyAt } from '../guards/data-types/data-types.js';
 import LocalStorageMethods from './local/storage.local.js';
@@ -25,7 +25,7 @@ const STORAGE = {
      */
     IS_SUPPORTED() {
         if (!this.LOCAL.IS_SUPPORTED && !this.SESSION.IS_SUPPORTED)
-            Emit._NotSupportedError(`${this.NAME}.${this.IS_SUPPORTED.name}`, this.NAME);
+            Raise._NotSupportedError(`${this.NAME}.${this.IS_SUPPORTED.name}`, this.NAME);
 
         return true;
     },

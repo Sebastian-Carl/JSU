@@ -1,7 +1,7 @@
 import { IsNullOrUndefined, IsNum, IsPlainObj, IsStr } from '../../guards/data-types/data-types.js';
 import { IsStrEmpty } from '../../guards/formats/formats.js';
 import { EachOf, MapOf, SomeOf } from '../../primitives/obj/obj.iterator.js';
-import Emit from '../error/builder/error.builder.js';
+import Raise from '../error/builder/error.builder.js';
 
 /**
  *  Retrieves the `name` property of the specified `function` or other `object` that supports this property.
@@ -92,7 +92,7 @@ export function DefineProperty(obj = {}, key, data, opt = "def") {
         obj = {};
 
     if (!IsStr(key))
-        Emit._ArgumentError(Method, "key", key, "String");
+        Raise._ArgumentError(Method, "key", key, "String");
 
     if (IsStrEmpty(key)) {
         console.warn(`${Method}(@key: \'\'): Expects a not-empty-string! (Exited)`);
@@ -136,7 +136,7 @@ export function Global(key, data, opt = "def") {
     const Method = "Global";
 
     if (!IsStr(key))
-        Emit._ArgumentError(Method, "key", key, "String");
+        Raise._ArgumentError(Method, "key", key, "String");
 
     if (IsStrEmpty(key)) {
         console.warn(`${Method}(@key: \'\'): Expects a non-empty-string! (Exited)`);

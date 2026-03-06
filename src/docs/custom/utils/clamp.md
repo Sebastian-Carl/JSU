@@ -35,9 +35,11 @@ console.log(chars[Custom.Clamp(charPos, 0, chars.length - 1)]); // It would alwa
 
 ## Navigate To
 
-- [Custom](../custom.md) - **_An API that contains only customized and/or enhanced version of utilities, methods, and more._**
-  - [ConstructorOrTypeOf()](./constructorOrTypeOf.md) - Retrieves the `constructor` or `type` of the given argument.
-  - [Generator()](./generator/generator.md) - A customized generator constructor for generating randomized `tokens`, `characters`, and `integer`.
-  - [NameOf()](./nameOf.md) - Retrieves the `name` property of the given object.
+- [Custom](../custom.md) - *An API that provides a collection of customized and/or enhanced utilities or objects.*
+  - [ConstructorOrTypeOf()](./constructorOrTypeOf.md) - *Retrieves the **constructor** or **type** of the given argument.*
+  - [Generator()](./generator/generator.md) - *A customized generator constructor for generating randomized **tokens**, **characters**, and **integer**.*
+  - [NameOf()](./nameOf.md) - *Retrieves the **name** property of the given object.*
 
-- [JSU - README](../../../../README.MD) - JSU's Homepage Documentation.
+- [JSU - README](../../../../README.MD) - *JSU Homepage Documentation.*
+  - [APIs](../../api/api.md) - *A complete collection of available APIs of **JSU**.*
+    - [ERROR](../error/error.md) - *An API that provides a collection of customized and/or enhanced error classes.*

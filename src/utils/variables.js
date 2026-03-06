@@ -1,9 +1,9 @@
 /**
- *  A collection of HTMLElements tags.
+ *  A collection of `HTMLElement` tags.
  *
  *  ***Source***: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements
  *
- *  @type { Map<string, { Generate: () => HTMLElement }> }
+ *  @type { Map<keyof HTMLElementTags, { Generate(): HTMLElement }> }
  */
 export const HTMLElementTags = [
     "a", "abbr", "acronym", "address", "address", "area", "article", "aside", "audio", "b", "base", "bdi",
@@ -24,11 +24,11 @@ export const HTMLElementTags = [
 }, new Map([]));
 
 /**
- *  A collection of SVGElements tags.
+ *  A collection of `SVGElement` tags.
  *
  *  ***Source***: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element
  *
- *  @type { Map<string, { Generate: () => SVGElement}> }
+ *  @type { Map<keyof SVGElementTags, { Generate(): SVGElement }> }
  */
 export const SVGElementTags = [
     "a", "animate", "animateMotion", "animateTransform", "circle", "clipPath", "defs", "desc", "ellipse",
@@ -46,11 +46,11 @@ export const SVGElementTags = [
 }, new Map([]));
 
 /**
- *  A collection of MathMLElements tags.
+ *  A collection of `MathMLElement` tags.
  *
  *  ***Source***: https://developer.mozilla.org/en-US/docs/Web/MathML/Reference/Element
  *
- *  @type { Map<string, { Generate: () => MathMLElement}> }
+ *  @type { Map<keyof MathElementTags, { Generate(): MathMLElement }> }
  */
 export const MathMLElementTags = [
     "math", "maction", "annotation", "annotation-xml", "menclose", "merror", "mfenced", "mfrac", "mi", "mmultiscripts",
@@ -67,11 +67,17 @@ export const MathMLElementTags = [
  */
 export const XMLNameSpace = ["http://www.w3.org/1998/Math/MathML", "http://www.w3.org/1999/xhtml", "http://www.w3.org/2000/svg"];
 
+if (globalThis.Variables === null || globalThis.Variables === undefined)
+    Object.defineProperty(globalThis, "Variables", {
+        value: {},
+        writable: false, configurable: true, enumerable: true
+    });
+
 [
     ["HTMLElementTags", HTMLElementTags], ["MathMLElementTags", MathMLElementTags],
     ["SVGElementTags", SVGElementTags], ["XMLNameSpace", XMLNameSpace]
 ].forEach((key, val) => {
-    Object.defineProperty(globalThis, key, {
+    Object.defineProperty(globalThis.Variables, key, {
         value: val,
         writable: false, configurable: true, enumerable: true
     });

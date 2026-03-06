@@ -109,4 +109,4 @@ DOM.Mount(B, Anchor); // Now visible to document contents or user's view.
 
 ## Navigate To
 
-- [APIs](./src/docs/api/api.md) - A complete collection list of available APIs of ***JSU***.
+- [APIs](./src/docs/api/api.md) - *A complete collection list of available APIs of ***JSU***.*

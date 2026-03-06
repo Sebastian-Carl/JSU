@@ -3,7 +3,7 @@ import { IsBool, IsNum, IsPlainObj } from '../../../guards/data-types/data-types
 import { CountOf, KeysOf } from '../../../primitives/obj/obj.accessor.js';
 import { EachOf, MapOf } from '../../../primitives/obj/obj.iterator.js';
 import Str from '../../../primitives/str/str.js';
-import Emit from '../../error/builder/error.builder.js';
+import Raise from '../../error/builder/error.builder.js';
 import { Clamp } from '../custom.utils.js';
 
 /**
@@ -66,10 +66,10 @@ export default class Generator {
         const CONFKeys = ["numbers", "symbols", "lowercase", "uppercase", "secure"];
 
         if (!IsNum(Size))
-            Emit._ArgumentError(this.constructor.name, "Size", Size, "Number");
+            Raise._ArgumentError(this.constructor.name, "Size", Size, "Number");
 
         if (!IsPlainObj(Conf))
-            Emit._ArgumentError(this.constructor.name, "Conf", Conf, "Plain Object");
+            Raise._ArgumentError(this.constructor.name, "Conf", Conf, "Plain Object");
 
         if (IsPlainObjEmpty(Conf))
             Conf = { numbers: true, symbols: true, lowercase: true, uppercase: true, secure: false };
@@ -130,7 +130,7 @@ export default class Generator {
 
         EachOf(Range, (R, Pos) => {
             if (!IsNum(R))
-                Emit._ArgumentError(Method, ["min", "max"][Pos], R, "Number");
+                Raise._ArgumentError(Method, ["min", "max"][Pos], R, "Number");
         });
 
         if (Range[0] > Range[1])
