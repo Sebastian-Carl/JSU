@@ -1,5 +1,6 @@
 /// <reference types="./api/api.d.ts" />
 /// <reference types="./api/element.d.ts" />
+/// <reference types="./arithmetic/arithmetic.d.ts" />
 /// <reference types="./dom/dom.d.ts" />
 /// <reference types="./custom/custom.d.ts" />
 /// <reference types="./custom/error/error.d.ts" />
@@ -8,6 +9,7 @@
 /// <reference types="./storage/storage.d.ts" />
 
 declare global {
+    readonly var Arithmetic: ArithmeticAPI;
     readonly var Custom: CustomAPI;
     readonly var DOM: DomAPI;
     readonly var ERROR: ErrorAPI;

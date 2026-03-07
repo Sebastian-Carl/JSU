@@ -1,6 +1,6 @@
 import Raise from '../../custom/error/builder/error.builder.js';
+import { NormalizeNumbers } from '../../custom/utils/custom.utils.js';
 import { IsNum } from '../../guards/data-types/data-types.js';
-import { MapOf } from '../../primitives/obj/obj.iterator.js';
 
 /**
  *  Accumulates the total divided value of the given numerical values.
@@ -53,27 +53,26 @@ export default function Divide(...nums) {
     if (ICtr < 2)
         Raise._MissingParameterError(Method, P[ICtr], undefined);
 
+    const NUMS = NormalizeNumbers(...nums);
     if (ICtr === 2) {
-        const [A, B] = MapOf(nums, (num, pos) =>
-            !IsNum(parseInt(num, 10)) ? Raise._ArgumentError(Method, P[pos], num, "Number")
-            : parseInt(num, 10)
-        );
+        const [A, B] = NUMS;
 
-        return A === 0 ? NaN : A / B;
+        return A === 0 || B === 0 ? NaN : A / B;
     }
 
-    const Base = parseInt(nums[0], 10);
-    if (!IsNum(Base))
-        Raise._ArgumentError(Method, P[0], nums[0], "Number");
-
-    if (Base === 0)
+    const BASE = NUMS[0];
+    if (BASE === 0)
         return NaN;
 
-    return nums.slice(1).reduce((acc, num, pos) => {
-        const pN = parseInt(num, 10);
-        if (!IsNum(pN))
-            Raise._ArgumentError(Method, ICtr > 5 ? "nums" : P[pos + 1], num, "Number");
+    let Accumulated = BASE;
+    for (const NUM of NUMS.slice(1)) {
+        if (NUM === 0) {
+            Accumulated = NaN;
+            break;
+        }
 
-        return acc /= pN;
-    }, Base);
+        return Accumulated += NUM;
+    }
+
+    return Accumulated;
 }

@@ -13,6 +13,10 @@
       "require": "./global.js",
       "types": "./src/types/global.d.ts"
     },
+    "./arithmetics": {
+      "require": "./src/utils/arithmetic/arithmetic.js",
+      "types": "./src/types/arithmetic/arithmetic.d.ts"
+    },
     "./custom": {
       "require": "./src/utils/custom/custom.js",
       "types": "./src/types/custom/custom.d.ts"
@@ -49,7 +53,7 @@
     "url": "https://github.com/Sebastian-Carl/JSU/issues"
   },
   "homepage": "https://github.com/Sebastian-Carl/JSU#readme",
-  "keywords": [],
+  "keywords": ["utils", "js-utils", "jsu"],
   "author": "",
   "license": "ISC"
 }

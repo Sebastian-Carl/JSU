@@ -28,6 +28,31 @@ type CustomUtilitiesAPI = {
     ConstructorOrTypeOf(arg: any): string | undefined;
 
     /**
+     *  Defines the given key-pair data to the target object.
+     *
+     *  ***Options***:
+     *   - `def` - Allows the defined key-pair data to be **writable**, **configurable**, and **enumerable**. (Default)
+     *   - `hard` - Prevents the defined key-pair data to be **writable**, **configurable**, and **enumerable**.
+     *   - `med` - Prevents the defined key-pair data to be **writable** and **configurable** but, can be **enumerable**.
+     *   - `soft` - Prevents the defined key-pair data to be **writable** but, can be **configurable** and **enumerable**.
+     *
+     *  @param obj - The target object to define the key-pair data at.
+     *  @param key - The key of key-pair data.
+     *  @param data - The data of key-pair data.
+     *  @param opt - A options of what would be the state configuration of the defined key-pair data.
+     */
+    DefineProperty<K, D>(obj: { [prop: string]: any }, key: K, data: D, opt?: 'def' | 'hard' | 'med' | 'soft'): { [prop: string]: any } & { [prop in K]: D; };
+
+    /**
+     *  Defines the given key-pair data to the `globalThis` or `window` API.
+     *
+     *  @param key - The key of key-pair data.
+     *  @param data - The data of key-pair data.
+     *  @param opt - A options of what would be the state configuration of the defined key-pair data.
+     */
+    Global(key: string, data: any, opt?: 'def' | 'hard' | 'med' | 'soft'): void;
+
+    /**
      *  Retrieves the `name` property of the specified object.
      *
      *  ***Notes***:
@@ -39,4 +64,62 @@ type CustomUtilitiesAPI = {
      *  @returns The `name` property value of the object.
      */
     NameOf(obj: {}): string;
+
+    /**
+     *  Validates and normalize the given numerical value to valid numerical value.
+     *
+     *  @param num1 - The numerical value to normalize.
+     *  @returns The normalized numerical value.
+     */
+    NormalizeNumbers(num1: number): number;
+
+    /**
+     *  Validates and normalize the given collection of numerical values to a valid numerical values.
+     *
+     *  @param num1 - The first numerical value to normalize.
+     *  @param num2 - The second numerical value to normalize.
+     *  @returns The normalized collection of numerical values.
+     */
+    NormalizeNumbers(num1: number, num2: number): number[];
+
+    /**
+     *  Validates and normalize the given collection of numerical values to a valid numerical values.
+     *
+     *  @param num1 - The first numerical value to normalize.
+     *  @param num2 - The second numerical value to normalize.
+     *  @param num3 - The third numerical value to normalize.
+     *  @returns The normalized collection of numerical values.
+     */
+    NormalizeNumbers(num1: number, num2: number, num3: number): number[];
+
+    /**
+     *  Validates and normalize the given collection of numerical values to a valid numerical values.
+     *
+     *  @param num1 - The first numerical value to normalize.
+     *  @param num2 - The second numerical value to normalize.
+     *  @param num3 - The third numerical value to normalize.
+     *  @param num4 - The fourth numerical value to normalize.
+     *  @returns The normalized collection of numerical values.
+     */
+    NormalizeNumbers(num1: number, num2: number, num3: number, num4: number): number[];
+
+    /**
+     *  Validates and normalize the given collection of numerical values to a valid numerical values.
+     *
+     *  @param num1 - The first numerical value to normalize.
+     *  @param num2 - The second numerical value to normalize.
+     *  @param num3 - The third numerical value to normalize.
+     *  @param num4 - The fourth numerical value to normalize.
+     *  @param num5 - The fifth numerical value to normalize.
+     *  @returns The normalized collection of numerical values.
+     */
+    NormalizeNumbers(num1: number, num2: number, num3: number, num4: number, num5: number): number[];
+
+    /**
+     *  Validates and normalize the given collection of numerical values to a valid numerical values.
+     *
+     *  @param nums - The collection of numerical values to normalize.
+     *  @returns The normalized collection of numerical values.
+     */
+    NormalizeNumbers(...nums: number[]): number[];
 }

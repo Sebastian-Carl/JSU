@@ -1,4 +1,4 @@
-import { IsNullOrUndefined, IsNum, IsPlainObj, IsStr } from '../../guards/data-types/data-types.js';
+import { IsNullOrUndefined, IsNum, IsPlainObj, IsStr, IsArr } from '../../guards/data-types/data-types.js';
 import { IsStrEmpty } from '../../guards/formats/formats.js';
 import { EachOf, MapOf, SomeOf } from '../../primitives/obj/obj.iterator.js';
 import Raise from '../error/builder/error.builder.js';
@@ -147,4 +147,68 @@ export function Global(key, data, opt = "def") {
         opt = "def";
 
     DefineProperty(globalThis, key, data, opt);
+}
+
+/**
+ *  Validates the given collection of numerical values whether if its a valid numerical value, and returns
+ *  the parsed numeric collection of it.
+ *
+ *  ***Note***:
+ *   - This automatically parse a argument data if its a numerical value in string format.
+ *
+ *  @overload
+ *  @param { number } num1 - The first numerical value to validate and normalize.
+ *  @returns { number } The validate and parsed numerical value.
+ *
+ *  @overload
+ *  @param { number } num1 - The first numerical value to validate and normalize.
+ *  @param { number } num2 - The second numerical value to validate and normalize.
+ *  @returns { number[] } The validated and parsed collection of numerical values.
+ *
+ *  @overload
+ *  @param { number } num1 - The first numerical value to validate and normalize.
+ *  @param { number } num2 - The second numerical value to validate and normalize.
+ *  @param { number } num3 - The third numerical value to validate and normalize.
+ *  @returns { number[] } The validated and parsed collection of numerical values.
+ *
+ *  @overload
+ *  @param { number } num1 - The first numerical value to validate and normalize.
+ *  @param { number } num2 - The second numerical value to validate and normalize.
+ *  @param { number } num3 - The third numerical value to validate and normalize.
+ *  @param { number } num4 - The fourth numerical value to validate and normalize.
+ *  @returns { number[] } The validated and parsed collection of numerical values.
+ *
+ *  @overload
+ *  @param { number } num1 - The first numerical value to validate and normalize.
+ *  @param { number } num2 - The second numerical value to validate and normalize.
+ *  @param { number } num3 - The third numerical value to validate and normalize.
+ *  @param { number } num4 - The fourth numerical value to validate and normalize.
+ *  @param { number } num5 - The fifth numerical value to validate and normalize.
+ *  @returns { number[] } The validated and parsed collection of numerical values.
+ *
+ *  @overload
+ *  @param { ...number } nums - The given collection of numerical values to validate.
+ *  @returns { number[] } The validated and parsed collection of numerical values.
+ */
+export function NormalizeNumbers(...nums) {
+    const Method = "NormalizeNumbers", ICtr = nums.length, P = ["num1", "num2", "num3", "num4", "num5"];
+
+    if (ICtr === 0)
+        Raise._MissingParameterError(Method, P[ICtr], undefined);
+
+    return nums.reduce((acc, num, pos) => {
+        const pN = parseInt(num, 10);
+        if (!IsNum(pN))
+            Raise._ArgumentError(Method, ICtr > 5 ? "nums" : P[pos], num, "Number");
+
+        if (ICtr > 1) {
+            if (!IsArr(acc))
+                acc = [];
+
+            acc.push(pN);
+        } else
+            acc = pN;
+
+        return acc;
+    });
 }

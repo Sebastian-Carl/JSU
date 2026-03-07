@@ -1,6 +1,6 @@
 import Raise from '../../custom/error/builder/error.builder.js';
+import { NormalizeNumbers } from '../../custom/utils/custom.utils.js';
 import { IsNum } from '../../guards/data-types/data-types.js';
-import { MapOf } from '../../primitives/obj/obj.iterator.js';
 
 /**
  *  Accumulates the total subtracted value of the given numerical values.
@@ -53,24 +53,12 @@ export default function Subtract(...nums) {
     if (ICtr < 2)
         Raise._MissingParameterError(Method, P[ICtr], undefined);
 
+    const NUMS = NormalizeNumbers(...nums);
     if (ICtr === 2) {
-        const [A, B] = MapOf(nums, (num, pos) =>
-            !IsNum(parseInt(num, 10)) ? Raise._ArgumentError(Method, P[pos], num, "Number")
-            : parseInt(num, 10)
-        );
+        const [A, B] = NUMS;
 
-        return A + B;
+        return A - B;
     }
 
-    const Base = parseInt(nums[0], 10);
-    if (!IsNum(Base))
-        Raise._ArgumentError(Method, P[0], nums[0], "Number");
-
-    return nums.slice(1).reduce((acc, num, pos) => {
-        const pN = parseInt(num, 10);
-        if (!IsNum(pN))
-            Raise._ArgumentError(Method, ICtr > 5 ? "nums" : P[pos + 1], num, "Number");
-
-        return acc += pN;
-    }, Base);
+    return NUMS.reduce((acc, num) => acc -= num, 0);
 }

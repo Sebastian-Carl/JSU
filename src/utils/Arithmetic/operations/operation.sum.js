@@ -1,4 +1,5 @@
 import Raise from '../../custom/error/builder/error.builder.js';
+import { NormalizeNumbers } from '../../custom/utils/custom.utils.js';
 import { IsNum } from '../../guards/data-types/data-types.js';
 import { MapOf } from '../../primitives/obj/obj.iterator.js';
 
@@ -53,24 +54,12 @@ export default function Sum(...nums) {
     if (ICtr < 2)
         Raise._MissingParameterError(Method, ICtr === 0 ? "num1" : "num2", undefined);
 
+    const NUMS = NormalizeNumbers(...nums);
     if (ICtr === 2) {
-        let [n1, n2] = MapOf(nums, (num, pos) =>
-            !IsNum(parseInt(num)) ? Raise._ArgumentError(Method, P[pos], num, "Number")
-            : parseInt(num, 10)
-        );
+        const [A, B] = NUMS;
 
-        return n1 + n2;
+        return A + B;
     }
 
-    const Base = parseInt(nums[0], 10);
-    if (!IsNum(Base))
-        Raise._ArgumentError(Method, P[0], nums[0], "Number");
-
-    return nums.slice(1).reduce((acc, num, pos) => {
-        const pN = parseInt(num, 10);
-        if (!IsNum(pN))
-            Raise._ArgumentError(Method, ICtr > 5 ? "nums" : P[pos + 1], num, "Number");
-
-        return acc += pN;
-    }, Base);
+    return NUMS.reduce((acc, num) => acc += num, 0);
 }
