@@ -1,7 +1,9 @@
+import { HTMLElementConfig, HTMLElementTags, MathElementConfig, MathElementTags, ResolveTag, SVGElementConfig, SVGElementTags } from "../element.js";
+
 /**
  *  A collection of `DOM` element creation API methods.
  */
-interface DOMCreateAPI {
+export interface DOMCreateAPI {
     /**
      *  Generates an instance of `HTMLElement` with the given qualified tag.
      *

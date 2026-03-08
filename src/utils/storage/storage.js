@@ -1,6 +1,6 @@
 import Raise from '../custom/error/builder/error.builder.js';
 import { Global } from '../custom/utils/custom.utils.js';
-import { IsNullOrUndefined, IsPropertyAt } from '../guards/data-types/data-types.js';
+import { IsNullOrUndefined } from '../guards/type/guards.type.js';
 import LocalStorageMethods from './local/storage.local.js';
 import SessionStorageMethods from './session/storage.session.js';
 
@@ -55,5 +55,5 @@ const STORAGE = {
 
 export default STORAGE;
 
-if (IsNullOrUndefined(globalThis.STORAGE) || !IsPropertyAt(globalThis, "STORAGE"))
+if (IsNullOrUndefined(globalThis.STORAGE) || !Object.hasOwn(globalThis, "STORAGE"))
     Global("STORAGE", STORAGE, "soft");

@@ -1,7 +1,7 @@
 /**
  *  A collection of customized utilities (`ad-hoc`).
  */
-type CustomUtilitiesAPI = {
+export type CustomUtilitiesAPI = {
     /**
      *  Clamps the current numeric value into its `minimum` and/or `maximum` numeric value.
      *
@@ -41,7 +41,7 @@ type CustomUtilitiesAPI = {
      *  @param data - The data of key-pair data.
      *  @param opt - A options of what would be the state configuration of the defined key-pair data.
      */
-    DefineProperty<K, D>(obj: { [prop: string]: any }, key: K, data: D, opt?: 'def' | 'hard' | 'med' | 'soft'): { [prop: string]: any } & { [prop in K]: D; };
+    DefineProperty<K, D>(obj: { [prop: string]: any }, key: K, data: D, opt?: 'def' | 'hard' | 'med' | 'soft'): { [prop: string]: any } & { [prop in K extends string ? K : string]: D; };
 
     /**
      *  Defines the given key-pair data to the `globalThis` or `window` API.

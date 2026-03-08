@@ -1,7 +1,7 @@
 /**
  *  A collection of customized error emitter contents for `ErrorConstructorAPI`.
  */
-type ErrorRaiseAPI = {
+export type ErrorRaiseAPI = {
     /**
      *  Builds and emit the contents of `ArgumentError`.
      *
@@ -10,7 +10,7 @@ type ErrorRaiseAPI = {
      *  @param received_arg - The received argument data.
      *  @param expected_args - The expected argument(s) of emitter to receive.
      */
-    _ArgumentError(emitter_id: string, argument_id?: string, received_arg?: string, ...expected_args?: string[]): never;
+    _ArgumentError(emitter_id: string, argument_id?: string, received_arg?: string, ...expected_args: string[]): never;
 
     /**
      *  Builds and emit the contents of `IndexOutOfBoundsError`.

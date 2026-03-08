@@ -1,9 +1,9 @@
-type LocalStorageResponse<OtherMeta extends {} = {}> = {
+export type LocalStorageResponse<OtherMeta extends {} = {}, OReason extends string> = {
     State: boolean;
-    Reason?: "DUPLICATE_KEY_FOUND" | "INVALID_KEY" | "NO_SUCH_KEY" | "NOT_SUPPORTED"
+    Reason?: "DUPLICATE_KEY_FOUND" | "INVALID_KEY" | "NOT_SUPPORTED" |& OReason
 } & OtherMeta;
 
-interface LocalStorageAPI {
+export interface LocalStorageAPI {
     /**
      *  The current total count of items at `localStorage`.
      */
@@ -35,7 +35,7 @@ interface LocalStorageAPI {
      *  @param localKey - The access key of `localStorage` item.
      *  @returns The retrieved data at `localStorage`.
      */
-    GET(localKey: string): LocalStorageResponse<{ Data: unknown | undefined }>;
+    GET(localKey: string): LocalStorageResponse<{ Data: unknown | undefined }, "NO_SUCH_KEY">;
 
     /**
      *  Retrieves the stored data of the specified `localStorage` key.
@@ -50,7 +50,7 @@ interface LocalStorageAPI {
      */
     GET<B extends boolean = true>(localKey: string, autoParse?: B): LocalStorageResponse<{
         Data: (B extends true ? unknown : string) | undefined;
-    }>;
+    }, "NO_SUCH_KEY">;
 
     /**
      *  Store a new item with its data at the `localStorage` API.
@@ -65,7 +65,7 @@ interface LocalStorageAPI {
      *  @param data - The data of the new storage item.
      *  @returns The response object of this process.
      */
-    NEW(localKey: string, data?: any): LocalStorageResponse;
+    NEW(localKey: string, data?: any): LocalStorageResponse<{}, undefined>;
 
     /**
      *  Removes the specified `key` of a storage item at `localStorage` API.
@@ -73,7 +73,7 @@ interface LocalStorageAPI {
      *  @param localKey - The access key of storage item to remove.
      *  @returns The response object of this process.
      */
-    REMOVE(localKey: string): LocalStorageResponse;
+    REMOVE(localKey: string): LocalStorageResponse<{}, "NO_SUCH_KEY">;
 
     /**
      *  Updates the data of the specified `key` of storage item with the given new data for it at `localStorage` API.
@@ -82,5 +82,5 @@ interface LocalStorageAPI {
      *  @param newData - The new data to set at storage item.
      *  @returns The response object of this process.
      */
-    UPDATE(localKey: string, newData?: any): LocalStorageResponse;
+    UPDATE(localKey: string, newData?: any): LocalStorageResponse<{}, "NO_SUCH_KEY">;
 }

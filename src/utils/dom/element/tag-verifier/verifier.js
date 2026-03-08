@@ -1,6 +1,6 @@
 import Raise from '../../../custom/error/builder/error.builder.js';
-import { IsStrEmpty } from '../../../guards/formats/formats.js';
-import { IsStr } from '../../../guards/data-types/data-types.js';
+import { IsStrEmpty } from '../../../guards/format/guards.format.js';
+import { IsStr } from '../../../guards/type/guards.type.js';
 import * as VAR from '../../../variables.js';
 
 /**

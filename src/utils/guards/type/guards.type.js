@@ -185,17 +185,3 @@ export function IsIterator(arg) {
 export function IsRegExp(arg) {
     return arg?.constructor === RegExp || arg instanceof RegExp;
 }
-
-/**
- *  Validates whether if the specified argument supported the specified property.
- *
- *  @param { any } arg - The argument to validate.
- *  @param { string } property - The property to check.
- *  @returns { boolean } The validation state result.
- */
-export function IsPropertyAt(arg, property) {
-    if (IsNullOrUndefined(arg) || !IsStr(property) || property.trim().length === 0)
-        return false;
-
-    return Object.hasOwn(arg, property) || property in arg;
-}

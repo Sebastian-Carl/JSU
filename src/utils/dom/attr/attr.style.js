@@ -1,6 +1,6 @@
 import Raise from '../../custom/error/builder/error.builder.js';
-import { IsPlainObjEmpty, IsStrEmpty } from '../../guards/formats/formats.js';
-import { IsArr, IsElement, IsPlainObj, IsStr } from '../../guards/data-types/data-types.js';
+import { IsPlainObjEmpty, IsStrEmpty } from '../../guards/format/guards.format.js';
+import { IsArr, IsElement, IsPlainObj, IsStr } from '../../guards/type/guards.type.js';
 import { CountOf } from '../../primitives/obj/obj.accessor.js';
 
 /**

@@ -1,4 +1,6 @@
-interface DOMGetElementByAPI {
+import { ElementTags, ResolveTag, ResolveTagNS, XMLNameSpace } from "../element.js";
+
+export interface DOMGetElementByAPI {
     /**
      *  Search and retrieves the elements with the given class name.
      *

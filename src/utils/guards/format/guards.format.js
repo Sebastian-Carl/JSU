@@ -1,5 +1,5 @@
 import { HTMLElementTags } from '../../variables.js';
-import { IsArr, IsFunc, IsMapObj, IsNullOrUndefined, IsNum, IsPlainObj, IsSetObj, IsStr } from '../data-types/data-types.js';
+import { IsArr, IsFunc, IsMapObj, IsNullOrUndefined, IsNum, IsPlainObj, IsSetObj, IsStr } from '../type/guards.type.js';
 
 /**
  *  Validates whether if the specified ***function*** argument is ***anonymous***.
@@ -220,55 +220,4 @@ export function IsMapObjEmpty(mObj) {
  */
 export function IsSetObjEmpty(sObj) {
     return IsSetObj(sObj) && sObj.size <= 0;
-}
-
-/**
- *  Validates whether if the specified `object` has the specified `property` id.
- *
- *  @overload
- *  @param {{ [prop: string]: unknown }} obj - The object to check the property.
- *  @param { string } propertyId - The property id to check.
- *  @returns { boolean }
- */
-/**
- *  Validates whether if the specified `map object` has the specified `property` id.
- *
- *  @template T
- *  @overload
- *  @param { T } obj - The map object to check the property.
- *  @param { string } propertyId - The property id to check.
- *  @returns { boolean }
- */
-export function HasProperty(obj = {}, propertyId) {
-    if (IsPlainObj(obj)) {
-        if (!IsStr(propertyId) || !IsStrEmpty(propertyId))
-            return false;
-
-        return Object.hasOwn(obj, propertyId);
-    }
-
-    if (IsMapObj(obj))
-        return obj.has(propertyId);
-
-    return false;
-}
-
-/**
- *  Validates whether if the specified `Array` or `Set` of elements includes the specified search `element`.
- *
- *  @param { Array<unknown> | Set<unknown> } obj - The `Array` or `Set` of elements.
- *  @param { any } searchElement - The element to search.
- *  @param { number } [atPos] - A optional parameter to start looking at collection of elements. (Default: 0)
- *  @returns { boolean }
- */
-export function HasValue(obj, searchElement, atPos = 0) {
-    const Pos = atPos < 0 ? Math.abs(atPos) : atPos;
-
-    if (IsArr(obj))
-        return obj.includes(searchElement, Pos);
-
-    if (IsSetObj(obj))
-        return [...obj.values()].includes(searchElement, Pos);
-
-    return false;
 }

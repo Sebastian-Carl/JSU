@@ -1,4 +1,4 @@
-interface DOMIdOfAPI {
+export interface DOMIdOfAPI {
     /**
      *  The current unique `id` value of the element.
      *

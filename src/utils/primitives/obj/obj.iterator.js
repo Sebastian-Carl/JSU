@@ -1,45 +1,49 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { ConstructorOrTypeOf } from '../../custom/utils/custom.utils.js';
-import { IsFuncAnonymous } from '../../guards/formats/formats.js';
-import { IsArr, IsFunc, IsMapObj, IsNullOrUndefined, IsSetObj } from '../../guards/data-types/data-types.js';
+import { IsFuncAnonymous, IsStrEmpty } from '../../guards/format/guards.format.js';
+import { IsArr, IsFunc, IsIterator, IsMapObj, IsNullOrUndefined, IsSetObj } from '../../guards/type/guards.type.js';
 import { CountOf } from './obj.accessor.js';
 
 /* Parameters Id and Expected Object Formats */
 const Args = ["obj", "callback", "thisArg"];
 const ObjectFormats = ["Array", "Map", "Set"];
+const ValidateParameters = function (m, o, c, tA, p) {
+    const M = IsStrEmpty(m) ? "(ANONYMOUS)" : m.trim();
+
+    if (!IsArr(o) && !IsMapObj(o) && !IsSetObj(o) && !(p in o))
+        Raise._ArgumentError(M, Args[0], o, ...ObjectFormats);
+
+    if (!IsFunc(c))
+        Raise._ArgumentError(M, Args[1], c, "Function");
+
+    if (!IsIterator(o) && CountOf(o) <= 0) {
+        console.warn(`${M}(${Args[0]}: EMPTY): No elements to iterate. (Terminated)`);
+        return true;
+    }
+
+    if (!IsNullOrUndefined(tA) && IsFuncAnonymous(c))
+        console.warn(`${M}(@callback: anonymous): Does not support the 'this' keyword! This may throw an error in case of being used somewhere in callback function.`);
+
+    return false;
+}
 
 /**
  *  Iterates and perform the specified `callback function` on each of the elements of the specified `object`.
  *
  *  @template T, A
  *  @param { T } obj - The object to get the elements from.
- *  @param { (value: IterableValue<T>, index: number, arr: IterableValue<T>[]) => void } callback - The callback function to perform.
+ *  @param { (value: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>, index: number, arr: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>[]) => void } callback - The callback function to perform.
  *  @param { A } [thisArg] - An optional parameter to hold the specified value and access it using the `this` keyword.
  *  @returns { void } - Does not return any data or value.
  */
 export function EachOf(obj, callback, thisArg) {
-    const Method = "EachOf";
+    const Method = "EachOf", Process = "forEach";
 
-    // ❌ - Exits when the provided object is not valid or not supported.
-    if (!IsArr(obj) && !IsMapObj(obj) && !IsSetObj(obj) && !("forEach" in obj))
-        Emit._ArgumentError(Method, Args[0], ConstructorOrTypeOf(obj), ...ObjectFormats);
-
-    // ❌ - Exits when callback is not callable or function.
-    if (!IsFunc(callback))
-        Emit._ArgumentError(Method, Args[1], ConstructorOrTypeOf(callback), "Function");
-
-    // ⚠️ - Notify and terminate the continuation of this process when the provided object is empty.
-    if (!(obj instanceof Iterator) && CountOf(obj) <= 0) {
-        console.warn(`${Method}(${Args[0]}: EMPTY): No elements to iterate. (Terminated)`);
+    if (ValidateParameters(Method, obj, callback, thisArg, Process))
         return;
-    }
-
-    // ⚠️ - Warns about possible conflicts when accessing or using the provided @thisArg inside of a anonymous @callback function.
-    if (!IsNullOrUndefined(thisArg) && IsFuncAnonymous(callback))
-        console.warn(`${Method}(@callback: anonymous): May throw or cause an error to your program if 'this' keyword is used inside of the anonymous callback function.`);
 
     /* @Iterate */
-    obj["forEach"](callback, thisArg);
+    obj[Process](callback, thisArg);
 }
 
 /**
@@ -48,33 +52,18 @@ export function EachOf(obj, callback, thisArg) {
  *
  *  @template T, A, U
  *  @param { T } obj - The object to get the elements from.
- *  @param { (value: IterableValue<T>, index: number, arr: IterableValue<T>[]) => U } callback - The callback function to perform.
+ *  @param { (value: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>, index: number, arr: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>[]) => U } callback - The callback function to perform.
  *  @param { A } [thisArg] - An optional parameter to hold the specified value and access it using the `this` keyword.
  *  @returns { U[] } - Returns a new array that contains the result(s).
  */
 export function MapOf(obj, callback, thisArg) {
-    const Method = "MapOf";
+    const Method = "MapOf", Process = "map";
 
-    // ❌ - Exits when the provided object is not valid or not supported.
-    if (!IsArr(obj) && !IsMapObj(obj) && !IsSetObj(obj) && !("map" in obj))
-        Emit._ArgumentError(Method, Args[0], ConstructorOrTypeOf(obj), ...ObjectFormats);
-
-    // ❌ - Exits when callback is not callable or function.
-    if (!IsFunc(callback))
-        Emit._ArgumentError(Method, Args[1], ConstructorOrTypeOf(callback), "Function");
-
-    // ⚠️ - Notify and terminate the continuation of this process when the provided object is empty.
-    if (!(obj instanceof Iterator) && CountOf(obj) <= 0) {
-        console.warn(`${Method}(${Args[0]}: EMPTY): No elements to iterate. (Terminated)`);
+    if (ValidateParameters(Method, obj, callback, thisArg, Process))
         return [];
-    }
-
-    // ⚠️ - Warns about possible conflicts when accessing or using the provided @thisArg inside of a anonymous @callback function.
-    if (!IsNullOrUndefined(thisArg) && IsFuncAnonymous(callback))
-        console.warn(`${Method}(@callback: anonymous): May throw or cause an error to your program if 'this' keyword is used inside of the anonymous callback function.`);
 
     /* @Iterate */
-    return obj["map"](callback, thisArg);
+    return obj[Process](callback, thisArg);
 }
 
 /**
@@ -82,34 +71,19 @@ export function MapOf(obj, callback, thisArg) {
  *  and determines whether if some of the elements in the `object` satisfies the specified `callback function`.
  *
  *  @template T, A
- * @param { T } obj - The object to get the elements from.
- *  @param { (value: IterableValue<T>, index: number, arr: IterableValue<T>[]) => unknown } callback - The callback function to perform.
+ *  @param { T } obj - The object to get the elements from.
+ *  @param { (value: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>, index: number, arr: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>[]) => unknown } callback - The callback function to perform.
  *  @param { A } [thisArg] - An optional parameter to hold the specified value and access it using the `this` keyword.
  *  @returns { boolean } - Returns `true` if some of the elements in the `object` satisfies the specified `callback function`, otherwise `false`.
  */
 export function SomeOf(obj, callback, thisArg) {
-    const Method = "SomeOf";
+    const Method = "SomeOf", Process = "some";
 
-    // ❌ - Exits when the provided object is not valid or not supported.
-    if (!IsArr(obj) && !IsMapObj(obj) && !IsSetObj(obj) && !("some" in obj))
-        Emit._ArgumentError(Method, Args[0], ConstructorOrTypeOf(obj), ...ObjectFormats);
-
-    // ❌ - Exits when callback is not callable or function.
-    if (!IsFunc(callback))
-        Emit._ArgumentError(Method, Args[1], ConstructorOrTypeOf(callback), "Function");
-
-    // ⚠️ - Notify and terminate the continuation of this process when the provided object is empty.
-    if (!(obj instanceof Iterator) && CountOf(obj) <= 0) {
-        console.warn(`${Method}(${Args[0]}: EMPTY): No elements to iterate. (Terminated)`);
-        return [];
-    }
-
-    // ⚠️ - Warns about possible conflicts when accessing or using the provided @thisArg inside of a anonymous @callback function.
-    if (!IsNullOrUndefined(thisArg) && IsFuncAnonymous(callback))
-        console.warn(`${Method}(@callback: anonymous): May throw or cause an error to your program if 'this' keyword is used inside of the anonymous callback function.`);
+    if (ValidateParameters(Method, obj, callback, thisArg, Process))
+        return false;
 
     /* @Iterate */
-    return obj["some"](callback, thisArg);
+    return obj[Process](callback, thisArg);
 }
 
 /**
@@ -117,32 +91,35 @@ export function SomeOf(obj, callback, thisArg) {
  *  and determines whether if all of the elements in the `object` satisfies the specified `callback function`.
  *
  *  @template T, A
- * @param { T } obj - The object to get the elements from.
- *  @param { (value: IterableValue<T>, index: number, arr: IterableValue<T>[]) => unknown } callback - The callback function to perform.
+ *  @param { T } obj - The object to get the elements from.
+ *  @param { (value: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>, index: number, arr: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>[]) => unknown } callback - The callback function to perform.
  *  @param { A } [thisArg] - An optional parameter to hold the specified value and access it using the `this` keyword.
  *  @returns { boolean } - Returns `true` if all of the elements in the `object` satisfies the specified `callback function`, otherwise `false`.
  */
 export function EveryOf(obj, callback, thisArg) {
-    const Method = "EveryOf";
+    const Method = "EveryOf", Process = "every";
 
-    // ❌ - Exits when the provided object is not valid or not supported.
-    if (!IsArr(obj) && !IsMapObj(obj) && !IsSetObj(obj) && !("every" in obj))
-        Emit._ArgumentError(Method, Args[0], ConstructorOrTypeOf(obj), ...ObjectFormats);
-
-    // ❌ - Exits when callback is not callable or function.
-    if (!IsFunc(callback))
-        Emit._ArgumentError(Method, Args[1], ConstructorOrTypeOf(callback), "Function");
-
-    // ⚠️ - Notify and terminate the continuation of this process when the provided object is empty.
-    if (!(obj instanceof Iterator) && CountOf(obj) <= 0) {
-        console.warn(`${Method}(${Args[0]}: EMPTY): No elements to iterate. (Terminated)`);
-        return [];
-    }
-
-    // ⚠️ - Warns about possible conflicts when accessing or using the provided @thisArg inside of a anonymous @callback function.
-    if (!IsNullOrUndefined(thisArg) && IsFuncAnonymous(callback))
-        console.warn(`${Method}(@callback: anonymous): May throw or cause an error to your program if 'this' keyword is used inside of the anonymous callback function.`);
+    if (ValidateParameters(Method, obj, callback, thisArg, Process))
+        return false;
 
     /* @Iterate */
-    return obj["every"](callback, thisArg);
+    return obj[Process](callback, thisArg);
+}
+
+/**
+ *  Iterates through the elements of given object and accumulates the result of performed callback function to each of elements.
+ *
+ *  @template T, A, R
+ *  @param { T } obj - The object of elements.
+ *  @param { (accumulator: A, value: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>, index: number, arr: import('../../../types/primitives/obj/obj.iterator.js').IterableElement<T>[]) => R } callback - The callback function to perform.
+ *  @param { A } [thisArg] - The default value of accumulator of this process.
+ *  @returns { R } The accumulated result of performed callback function.
+ */
+export function Accumulate(obj, callback, thisArg) {
+    const Method = "Accumulate", Process = "reduce";
+
+    if (ValidateParameters(Method, obj, callback, thisArg, Process))
+        return;
+
+    return obj[Process](callback, thisArg);
 }

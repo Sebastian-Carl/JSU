@@ -1,6 +1,6 @@
 import Raise from '../../../custom/error/builder/error.builder.js';
-import { IsStr, IsParentNode } from '../../../guards/data-types/data-types.js';
-import { IsStrEmpty } from '../../../guards/formats/formats.js';
+import { IsStr, IsParentNode } from '../../../guards/type/guards.type.js';
+import { IsStrEmpty } from '../../../guards/format/guards.format.js';
 
 /**
  *  Search and retrieves the first `DOMElement` that matches the given selector.

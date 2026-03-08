@@ -1,5 +1,5 @@
-import { IsNullOrUndefined, IsPropertyAt } from '../guards/data-types/data-types.js';
-import { IsStrEmpty } from '../guards/formats/formats.js';
+import { IsNullOrUndefined } from '../guards/type/guards.type.js';
+import { IsStrEmpty } from '../guards/format/guards.format.js';
 import * as CustomUtils from "./utils/custom.utils.js";
 import Generator from './utils/generator/generator.js';
 
@@ -11,7 +11,7 @@ export default function Custom() {
 
     for (const Method of [...Object.values(CustomUtils), Generator]) {
         const Key = CustomUtils.NameOf(Method);
-        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !IsPropertyAt(CustomAPI, Key) && !(Key === "(ANONYMOUS)"))
+        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !Object.hasOwn(CustomAPI, Key) && !(Key === "(ANONYMOUS)"))
             CustomUtils.DefineProperty(CustomAPI, Key, Method, "med");
     }
 

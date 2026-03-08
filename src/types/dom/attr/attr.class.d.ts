@@ -1,4 +1,4 @@
-interface DOMClassOfAPI {
+export interface DOMClassOfAPI {
     /**
      *  Search the given `class` token at the element's `DOMTokenList`.
      *

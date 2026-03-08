@@ -1,6 +1,6 @@
 import Raise from '../../custom/error/builder/error.builder.js';
 import { NormalizeNumbers } from '../../custom/utils/custom.utils.js';
-import { IsNum } from '../../guards/data-types/data-types.js';
+import { IsNum } from '../../guards/type/guards.type.js';
 import { MapOf } from '../../primitives/obj/obj.iterator.js';
 
 /**

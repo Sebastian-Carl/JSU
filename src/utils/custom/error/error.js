@@ -1,8 +1,8 @@
 import * as CustomErrorClasses from "./constructor/error.custom.js";
 import Raise from './builder/error.builder.js';
 import { DefineProperty, Global, NameOf } from '../utils/custom.utils.js';
-import { IsNullOrUndefined, IsPropertyAt, IsStr } from '../../guards/data-types/data-types.js';
-import { IsStrEmpty } from '../../guards/formats/formats.js';
+import { IsNullOrUndefined, IsStr } from '../../guards/type/guards.type.js';
+import { IsStrEmpty } from '../../guards/format/guards.format.js';
 
 /**
  *  Returns a customized collection of `@error_class_modules` and `@error_class_builder_modules`.
@@ -13,7 +13,7 @@ function ERROR() {
 
     for (const Method of [Constructors, Raise]) {
         const Key = NameOf(Method);
-        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !IsPropertyAt(ErrorAPI, Key) && !(Key === "(ANONYMOUS)"))
+        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !Object.hasOwn(ErrorAPI, Key) && !(Key === "(ANONYMOUS)"))
             DefineProperty(ErrorAPI, NameOf(Method), Method, "med")
     }
 

@@ -1,5 +1,5 @@
 import Raise from '../../custom/error/builder/error.builder.js';
-import { IsChildNode, IsParentNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
+import { IsChildNode, IsFunc, IsParentNode } from '../../guards/type/guards.type.js';
 
 /**
  *  Mounts the given `childNode` to the specified `parentNode`.
@@ -34,7 +34,7 @@ export default function Mount(parentNode, ...childNodes) {
         return;
     }
 
-    if (!IsPropertyAt(parentNode, "appendChild")) {
+    if (!(parentNode in "appendChild") || !IsFunc(parentNode.appendChild)) {
         console.warn(`${Method}(@parentNode: NOT_SUPPORTED_METHOD): The specified parent node does not support the property method 'appendChild'! (Exited)`);
         return;
     }

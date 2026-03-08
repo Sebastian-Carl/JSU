@@ -1,5 +1,5 @@
-import { IsPlainObjEmpty } from '../../../guards/formats/formats.js';
-import { IsBool, IsNum, IsPlainObj } from '../../../guards/data-types/data-types.js';
+import { IsPlainObjEmpty } from '../../../guards/format/guards.format.js';
+import { IsBool, IsNum, IsPlainObj } from '../../../guards/type/guards.type.js';
 import { CountOf, KeysOf } from '../../../primitives/obj/obj.accessor.js';
 import { EachOf, MapOf } from '../../../primitives/obj/obj.iterator.js';
 import Str from '../../../primitives/str/str.js';

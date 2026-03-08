@@ -1,5 +1,5 @@
 import Raise from '../../custom/error/builder/error.builder.js';
-import { IsChildNode, IsPropertyAt } from '../../guards/data-types/data-types.js';
+import { IsChildNode } from '../../guards/type/guards.type.js';
 
 /**
  *  Unmounts the given `childNode` to its `parentNode`.
@@ -32,11 +32,6 @@ export default function Unmount(...childNodes) {
     for (const Node of childNodes) {
         if (!IsChildNode(Node))
             Raise._ArgumentError(Method, PCN, Node, "ChildNode");
-
-        if (!IsPropertyAt(Node, "remove")) {
-            console.warn(`${Method}(@${PCN}${ICtr > 1 ? `[${Node}]` : `: ${Node}`}: NOT_SUPPORTED_METHOD): A given child node does not support the 'remove()' method! (${ICtr > 1 ? "Skipped" : "Exited"})`);
-            continue;
-        }
 
         Node.remove();
     }

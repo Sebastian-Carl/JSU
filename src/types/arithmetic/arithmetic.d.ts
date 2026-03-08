@@ -1,4 +1,4 @@
-interface ArithmeticAPI {
+export interface ArithmeticAPI {
     /**
      *  Accumulates the total divided value of the first and second numerical values.
      *
@@ -279,3 +279,12 @@ interface ArithmeticAPI {
      */
     Sum(...nums: number[]): number;
 }
+
+declare global {
+    /**
+     *  A collection of basic math operation.
+     */
+    var Arithmetic: ArithmeticAPI;
+}
+
+export { }

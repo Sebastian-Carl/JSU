@@ -1,5 +1,5 @@
-import { IsNullOrUndefined, IsNum, IsPlainObj, IsStr, IsArr } from '../../guards/data-types/data-types.js';
-import { IsStrEmpty } from '../../guards/formats/formats.js';
+import { IsNullOrUndefined, IsNum, IsPlainObj, IsStr, IsArr } from '../../guards/type/guards.type.js';
+import { IsStrEmpty } from '../../guards/format/guards.format.js';
 import { EachOf, MapOf, SomeOf } from '../../primitives/obj/obj.iterator.js';
 import Raise from '../error/builder/error.builder.js';
 

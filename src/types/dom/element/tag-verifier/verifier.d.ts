@@ -1,4 +1,6 @@
-interface VerifierTagAPI<K extends keyof ElementTags> {
+import { ElementTags, ResolveTag } from "../element.js";
+
+export interface VerifierTagAPI<K extends keyof ElementTags> {
     /**
      *  Verifies the given tag of element whether if its qualified as instance of `HTMLElement`.
      */

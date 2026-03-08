@@ -1,6 +1,6 @@
 import Raise from '../../custom/error/builder/error.builder.js';
-import { IsStrEmpty } from '../../guards/formats/formats.js';
-import { IsElement, IsNullOrUndefined, IsStr } from '../../guards/data-types/data-types.js';
+import { IsStrEmpty } from '../../guards/format/guards.format.js';
+import { IsElement, IsNullOrUndefined, IsStr } from '../../guards/type/guards.type.js';
 
 /**
  *  Access the `id` attribute of element and returns a set of methods for it.

@@ -1,7 +1,7 @@
-import Emit from '../../custom/error/builder/error.builder.js';
+import Raise from '../../custom/error/builder/error.builder.js';
 import { ConstructorOrTypeOf } from '../../custom/utils/custom.utils.js';
-import { IsArrEmpty, IsMapObjEmpty, IsPlainObjEmpty, IsSetObjEmpty, IsStrEmpty } from "../../guards/formats/formats.js";
-import { IsArr, IsMapObj, IsNullOrUndefined, IsNum, IsPlainObj, IsSetObj, IsStr } from "../../guards/data-types/data-types.js";
+import { IsArrEmpty, IsMapObjEmpty, IsPlainObjEmpty, IsSetObjEmpty, IsStrEmpty } from "../../guards/format/guards.format.js";
+import { IsArr, IsMapObj, IsNullOrUndefined, IsNum, IsPlainObj, IsSetObj, IsStr } from "../../guards/type/guards.type.js";
 
 /**
  *  Returns an iterable entries of data from the specified ***object*** or
@@ -26,7 +26,7 @@ import { IsArr, IsMapObj, IsNullOrUndefined, IsNum, IsPlainObj, IsSetObj, IsStr 
 export function EntriesOf(obj) {
     // ❌ - Exits when @obj is none of these expected object formats.
     if (!IsArr(obj) && !IsPlainObj(obj) && !IsMapObj(obj) && !IsSetObj(obj))
-        Emit._ArgumentError("EntriesOf", "obj", ConstructorOrTypeOf(obj), "Array", "Map", "Plain Object", "Set");
+        Raise._ArgumentError("EntriesOf", "obj", ConstructorOrTypeOf(obj), "Array", "Map", "Plain Object", "Set");
 
     // ⚠️ - Warns when the specified @obj is empty or does not have present contents.
     if (IsPlainObj(obj) && IsPlainObjEmpty(obj) || IsArr(obj) && IsArrEmpty(obj) ||
@@ -73,7 +73,7 @@ export function EntriesOf(obj) {
 export function KeysOf(obj) {
     // ❌ - Exits when @obj is none of these expected object formats.
     if (!IsArr(obj) && !IsPlainObj(obj) && !IsMapObj(obj) && !IsSetObj(obj))
-        Emit._ArgumentError("KeysOf", "obj", ConstructorOrTypeOf(obj), "Array", "Map", "Plain Object", "Set");
+        Raise._ArgumentError("KeysOf", "obj", ConstructorOrTypeOf(obj), "Array", "Map", "Plain Object", "Set");
 
     // ⚠️ - Warns when the specified @obj is empty or does not have present contents.
     if (IsPlainObj(obj) && IsPlainObjEmpty(obj) || IsArr(obj) && IsArrEmpty(obj) ||
@@ -121,7 +121,7 @@ export function KeysOf(obj) {
 export function ValuesOf(obj) {
     // ❌ - Exits when @obj is none of these expected object formats.
     if (!IsArr(obj) && !IsPlainObj(obj) && !IsMapObj(obj) && !IsSetObj(obj))
-        Emit._ArgumentError("ValuesOf", "obj", ConstructorOrTypeOf(obj), "Array", "Map", "Plain Object", "Set");
+        Raise._ArgumentError("ValuesOf", "obj", ConstructorOrTypeOf(obj), "Array", "Map", "Plain Object", "Set");
 
     // ⚠️ - Warns when the specified @obj is empty or does not have present contents.
     if (IsPlainObj(obj) && IsPlainObjEmpty(obj) || IsArr(obj) && IsArrEmpty(obj) ||

@@ -7,8 +7,8 @@ import Mount from './lifecycle/mount.js';
 import Unmount from './lifecycle/unmount.js';
 import { Select, SelectAll } from "./element/query/dom.query.js";
 import GetElementBy from "./element/getElementBy/dom.getElementBy.js";
-import { IsNullOrUndefined, IsPropertyAt } from '../guards/data-types/data-types.js';
-import { IsStrEmpty } from '../guards/formats/formats.js';
+import { IsNullOrUndefined } from '../guards/type/guards.type.js';
+import { IsStrEmpty } from '../guards/format/guards.format.js';
 
 /**
  *  A customized or enhanced collection of `DOM` methods.
@@ -19,7 +19,7 @@ export default function DOM() {
     for (const Method of [ClassOf, Create, GetElementBy, Mount, Unmount, Select, SelectAll, StyleOf, VerifyTag]) {
         const Key = NameOf(Method);
 
-        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !IsPropertyAt(DomAPI, Key) && !(Key === "(ANONYMOUS)"))
+        if (!IsNullOrUndefined(Key) && !IsStrEmpty(Key) && !Object.hasOwn(DomAPI, Key) && !(Key === "(ANONYMOUS)"))
             DefineProperty(DomAPI, Key, Method, "med");
     }
 

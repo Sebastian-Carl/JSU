@@ -1,9 +1,9 @@
-type SessionStorageResponse<OtherMeta extends {} = {}> = {
+export type SessionStorageResponse<OtherMeta extends {} = {}, OReason extends string> = {
     State: boolean;
-    Reason?: "DUPLICATE_KEY_FOUND" | "INVALID_KEY" | "NO_SUCH_KEY" | "NOT_SUPPORTED"
+    Reason?: "DUPLICATE_KEY_FOUND" | "INVALID_KEY" | "NOT_SUPPORTED" |& OReason
 } & OtherMeta;
 
-interface SessionStorageAPI {
+export interface SessionStorageAPI {
     /**
      *  The current total count of items at `sessionStorage`.
      */
@@ -35,7 +35,7 @@ interface SessionStorageAPI {
      *  @param sessionKey - The access key of `sessionStorage` item.
      *  @returns The retrieved data at `sessionStorage`.
      */
-    GET(sessionKey: string): SessionStorageResponse<{ Data: unknown | undefined }>;
+    GET(sessionKey: string): SessionStorageResponse<{ Data: unknown | undefined }, "NO_SUCH_KEY">;
 
     /**
      *  Retrieves the stored data of the specified `sessionStorage` key.
@@ -50,7 +50,7 @@ interface SessionStorageAPI {
      */
     GET<B extends boolean = true>(sessionKey: string, autoParse?: B): SessionStorageResponse<{
         Data: (B extends true ? unknown : string) | undefined;
-    }>;
+    }, "NO_SUCH_KEY">;
 
     /**
      *  Store a new item with its data at the `sessionStorage` API.
@@ -65,7 +65,7 @@ interface SessionStorageAPI {
      *  @param data - The data of the new storage item.
      *  @returns The response object of this process.
      */
-    NEW(sessionKey: string, data?: any): SessionStorageResponse;
+    NEW(sessionKey: string, data?: any): SessionStorageResponse<{}, undefined>;
 
     /**
      *  Removes the specified `key` of a storage item at `sessionStorage` API.
@@ -73,7 +73,7 @@ interface SessionStorageAPI {
      *  @param sessionKey - The access key of storage item to remove.
      *  @returns The response object of this process.
      */
-    REMOVE(sessionKey: string): SessionStorageResponse;
+    REMOVE(sessionKey: string): SessionStorageResponse<{}, "NO_SUCH_KEY">;
 
     /**
      *  Updates the data of the specified `key` of storage item with the given new data for it at `sessionStorage` API.
@@ -82,5 +82,5 @@ interface SessionStorageAPI {
      *  @param newData - The new data to set at storage item.
      *  @returns The response object of this process.
      */
-    UPDATE(sessionKey: string, newData?: any): SessionStorageResponse;
+    UPDATE(sessionKey: string, newData?: any): SessionStorageResponse<{}, "NO_SUCH_KEY">;
 }

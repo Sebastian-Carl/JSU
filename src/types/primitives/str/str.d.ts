@@ -1,4 +1,4 @@
-interface PrimitivesStrAPI {
+export interface PrimitivesStrAPI {
     /**
      *  A collection of characters.
      */

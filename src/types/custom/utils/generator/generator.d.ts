@@ -1,7 +1,7 @@
 /**
  *  Configuration for generator's contents.
  */
-interface GeneratorAPIConfig {
+export interface GeneratorAPIConfig {
     /**
      *  A configuration state for including or excluding numerical values at generator's content.
      */
@@ -35,7 +35,7 @@ interface GeneratorAPIConfig {
 /**
  *  A collection of randomized content generators.
  */
-class GeneratorAPI {
+export class GeneratorAPI {
     /**
      *  The `size` or `length` of contents of generators to generate.
      */
@@ -78,15 +78,15 @@ class GeneratorAPI {
      *  @param min - The minimum or lowest integer value it can generate. (Default: 0)
      *  @param max - The maximum or highest integer value it can generate. (Default: 1)
      */
-    readonly RandomInteger(min?: number, max?: number): number;
+    RandomInteger(min?: number, max?: number): number;
 
     /**
      *  Generates a set of randomized characters in lowercase and/or uppercase.
      */
-    readonly RandomCharacters(): string;
+    RandomCharacters(): string;
 
     /**
      *  Generates a new set of randomized tokens that can be used for ids, session id, etc.
      */
-    readonly NewToken(): string;
+    NewToken(): string;
 }

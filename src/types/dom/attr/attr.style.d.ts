@@ -1,4 +1,6 @@
-interface DOMStyleOfAPI {
+import { CSSDeclaration } from "../element/element.js";
+
+export interface DOMStyleOfAPI {
     /**
      *  Set the given `CSSStyle` object properties from the element.
      *
