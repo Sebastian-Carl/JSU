@@ -1,6 +1,6 @@
 {
   "name": "@carlsebastian/jsu",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A ready-to-use JavaScripts custom utilities such as types validations, formats validations, formatter, and many more!",
   "main": "./global.js",
   "types": "./src/types/global.d.ts",
