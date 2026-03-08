@@ -7,7 +7,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The map object to get its collection of data entries.
      *  @returns The iterable data entries of map object.
      */
-    EntriesOf<T>(obj: T): T extends Map<infer K, infer V> ? MapIterator<[K, V]> : never[];
+    EntriesOf<K, V>(obj: Map<K, V>): MapIterator<[K, V]>;
 
     /**
      *  Returns the iterable entries of data from the given set object.
@@ -15,7 +15,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The set object to get its collection of data entries.
      *  @returns The iterable data entries of set object.
      */
-    EntriesOf<T>(obj: T): T extends Set<infer U> ? SetIterator<[U, U]> : never[];
+    EntriesOf<U>(obj: Set<U>): SetIterator<[U, U]>;
 
     /**
      *  Returns the iterable entries of data from the given array object.
@@ -23,7 +23,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The array object to get its collection of data entries.
      *  @returns The iterable data entries of array object.
      */
-    EntriesOf<T>(obj: T): T extends readonly (infer V)[] ? ArrayIterator<[number, V]> : never[];
+    EntriesOf<T>(obj: readonly T[]): ArrayIterator<[number, T]>;
 
     /**
      *  Returns the array of data entries from the given `Object` object.
@@ -31,7 +31,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The plain `Object` object to get its collection of data entries.
      *  @returns The array of data entries of plain `Object` object.
      */
-    EntriesOf<T>(obj: T): T extends { [prop: string]: infer D } | ArrayLike<infer D> ? Array<[string, V]> : never[];
+    EntriesOf<T extends Record<string, any>>(obj: T): Array<[keyof T, T[keyof T]]>;
 
     /**
      *  Returns an iterable entries of data from the specified ***object*** or
@@ -54,7 +54,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The map object to get its collection of keys.
      *  @returns The iterable keys of map object.
      */
-    KeysOf<T>(obj: T): T extends Map<infer K, unknown> ? MapIterator<K> : never[]
+    KeysOf<K, V>(obj: Map<K, V>): MapIterator<K>;
 
     /**
      *  Returns a iterable keys of the given set object.
@@ -62,7 +62,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The set object to get its collection of keys.
      *  @returns The iterable keys of set object.
      */
-    KeysOf<T>(obj: T): T extends Set<infer U> ? SetIterator<U> : never[]
+    KeysOf<U>(obj: Set<U>): SetIterator<U>;
 
     /**
      *  Returns a iterable keys of the given array object.
@@ -70,7 +70,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The array object to get its collection of keys.
      *  @returns The iterable keys of array object.
      */
-    KeysOf<T>(obj: T): T extends readonly (infer V)[] ? ArrayIterator<number> : never[]
+    KeysOf<T>(obj: readonly T[]): Array<number>;
 
     /**
      *  Returns a array keys of the given plain `Object` object.
@@ -78,7 +78,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The plain `Object` object to get its collection of keys.
      *  @returns The array keys of plain `Object` object.
      */
-    KeysOf<T>(obj: T): T extends { [prop: string]: infer D } | ArrayLike<infer D> ? string[] : never[]
+    KeysOf<T extends Record<string, any>>(obj: T): Array<keyof T>;
 
     /**
      *  Returns an iterable keys or index of the specified ***object***.
@@ -96,7 +96,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The map object to get its collection values data.
      *  @returns The iterable values data of map object.
      */
-    ValuesOf<T>(obj: T): T extends Map<unknown, infer V> ? MapIterator<V> : never[];
+    ValuesOf<K, V>(obj: Map<K, V>): MapIterator<V>;
 
     /**
      *  Returns an iterable values data from the given set object.
@@ -104,7 +104,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The set object to get its collection values data.
      *  @returns The iterable values data of set object.
      */
-    ValuesOf<T>(obj: T): T extends Set<infer U> ? SetIterator<U> : never[];
+    ValuesOf<U>(obj: Set<U>): SetIterator<U>;
 
     /**
      *  Returns an iterable values data from the given array object.
@@ -112,7 +112,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The array object to get its collection values data.
      *  @returns The iterable values data of array object.
      */
-    ValuesOf<T>(obj: T): T extends readonly (infer V)[] ? ArrayIterator<V> : never[];
+    ValuesOf<T>(obj: readonly T[]): Array<T>;
 
     /**
      *  Returns an iterable values data from the given plain `Object` object.
@@ -120,7 +120,7 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The plain `Object` object to get its collection values data.
      *  @returns The iterable values data of plain `Object` object.
      */
-    ValuesOf<T>(obj: T): T extends { [prop: string]: infer D } | ArrayLike<infer D> ? Array<D> : never[];
+    ValuesOf<T extends Record<string, any>>(obj: T): Array<T[keyof T]>;
 
     /**
      *  Returns an iterable values of the specified ***object***.
@@ -217,5 +217,5 @@ export interface PrimitivesObjectAccessorAPI {
      *  @param obj - The collection of key-pairs to retrieve at.
      *  @param propertyId - The property id of key-pair to retrieve.
      */
-    GetPropertyOf<T, P extends InferKeyOptions<T>>(obj: T, propertyId: P): P extends keyof T ? typeof T[P] : undefined ;
+    GetPropertyOf<T, P extends InferKeyOptions<T>>(obj: T, propertyId: P): P extends keyof T ? T[P] : undefined ;
 }
